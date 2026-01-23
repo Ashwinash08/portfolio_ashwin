@@ -1,0 +1,4 @@
+/* Reset default App styles as we are using global styles */
+#root {
+  width: 100%;
+}

@@ -1,0 +1,61 @@
+.star-border-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    z-index: 1;
+}
+
+.inner-content {
+    position: relative;
+    background: var(--bg-primary);
+    /* Use theme background */
+    border-radius: 19px;
+    /* Slightly less than container */
+    margin: 1px;
+    /* Thickness spacing */
+    z-index: 3;
+    height: 100%;
+    overflow: hidden;
+}
+
+.border-gradient-bottom,
+.border-gradient-top {
+    position: absolute;
+    width: 300%;
+    height: 300%;
+    top: -100%;
+    left: -100%;
+    z-index: 2;
+    pointer-events: none;
+    filter: blur(10px);
+}
+
+.border-gradient-bottom {
+    animation: star-border-rotate-reverse linear infinite;
+    opacity: 0.8;
+}
+
+.border-gradient-top {
+    animation: star-border-rotate linear infinite;
+    opacity: 0.8;
+}
+
+@keyframes star-border-rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes star-border-rotate-reverse {
+    from {
+        transform: rotate(360deg);
+    }
+
+    to {
+        transform: rotate(0deg);
+    }
+}
