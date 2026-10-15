@@ -1,154 +1,206 @@
+import React, { useState } from 'react';
 import GradientText from './GradientText';
 import SpotlightCard from './SpotlightCard';
-import Particles from './Particles';
-import FadeContent from './FadeContent';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
-const Skills = () => {
+const Skills = ({ onNavigate }) => {
+    const [selectedCategory, setSelectedCategory] = useState('All');
+
     const skillCategories = [
         {
             title: "Frontend Development",
+            id: "Frontend",
+            icon: "🌐",
             skills: [
-                { name: "HTML", level: "80%" },
-                { name: "C ", level: "75%" },
-                { name: "Java", level: "70%" },
-                { name: "JavaScript", level: "65%" },
-                { name: "CSS", level: "75%" }
+                { name: "HTML5", level: 90 },
+                { name: "CSS3 / Styling", level: 85 },
+                { name: "JavaScript", level: 80 },
+                { name: "C Language", level: 78 },
+                { name: "Java", level: 75 }
             ]
         },
         {
-            title: "Backend & database",
+            title: "Backend & Database",
+            id: "Backend",
+            icon: "🗄️",
             skills: [
-                { name: "MySQL", level: "60%" },
-                { name: "Python", level: "70%" },
-                { name: "Php", level: "75%" },
-                { name: "MongoDB", level: "65%" }
+                { name: "Python", level: 85 },
+                { name: "Django", level: 80 },
+                { name: "PHP", level: 75 },
+                { name: "MySQL", level: 80 },
+                { name: "MongoDB", level: 70 }
             ]
         },
         {
-            title: "Tools & Others",
+            title: "Tools & Ecosystem",
+            id: "Tools",
+            icon: "🛠️",
             skills: [
-                { name: "VS Code", level: "80%" },
-                { name: "Antigravity", level: "75%" },
-                { name: "Android Studio", level: "60%" }
+                { name: "VS Code", level: 90 },
+                { name: "Git / GitHub", level: 85 },
+                { name: "Antigravity IDE", level: 80 },
+                { name: "Android Studio", level: 70 }
             ]
         }
     ];
 
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.1
-            }
-        }
-    };
+    const filterTabs = ['All', 'Frontend', 'Backend', 'Tools'];
 
-    const itemVariants = {
-        hidden: { y: 20, opacity: 0 },
-        visible: { y: 0, opacity: 1 }
-    };
+    const displayedCategories = selectedCategory === 'All'
+        ? skillCategories
+        : skillCategories.filter(c => c.id === selectedCategory);
 
     return (
-        <section id="skills" className="section" style={{ background: 'var(--bg-primary)', position: 'relative', overflow: 'hidden' }}>
-            <Particles
-                particleCount={200}
-                particleSpread={12}
-                speed={0.15}
-                particleColors={['#5227FF', '#FF9FFC', '#B19EEF']}
-                moveParticlesOnHover={true}
-                particleHoverFactor={2.5}
-                alphaParticles={true}
-                particleBaseSize={80}
-                sizeRandomness={0.8}
-                cameraDistance={30}
-                disableRotation={false}
-            />
+        <section id="skills" className="section" style={{ position: 'relative' }}>
+            <div className="container">
+                <motion.div
+                    className="section-header"
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                >
+                    <span className="section-subtitle">Technical Stack</span>
+                    <GradientText
+                        className="section-title"
+                        colors={['#ffffff', '#ff8c3b', '#ff5500', '#ffffff']}
+                        animationSpeed={6}
+                        showBorder={false}
+                    >
+                        Skills & Expertise
+                    </GradientText>
 
-            <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-                <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-                    <FadeContent blur={true} duration={1000}>
-                        <span className="section-subtitle">Expertise</span>
-                        <GradientText
-                            className="section-title"
-                            colors={['#5227FF', '#FF9FFC', '#B19EEF', '#5227FF']}
-                            animationSpeed={6}
-                            showBorder={false}
-                        >
-                            Professional Skills
-                        </GradientText>
-                    </FadeContent>
-                </div>
+                    {/* Filter Tabs */}
+                    <div style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        gap: '0.4rem',
+                        marginTop: '0.85rem',
+                        flexWrap: 'wrap'
+                    }}>
+                        {filterTabs.map((tab) => {
+                            const isSelected = selectedCategory === tab;
+                            return (
+                                <motion.button
+                                    key={tab}
+                                    whileHover={{ scale: 1.04, y: -1 }}
+                                    whileTap={{ scale: 0.96 }}
+                                    onClick={() => setSelectedCategory(tab)}
+                                    style={{
+                                        padding: '0.32rem 0.9rem',
+                                        borderRadius: '30px',
+                                        fontSize: '0.8rem',
+                                        fontWeight: '600',
+                                        border: isSelected ? '1px solid var(--accent-primary)' : '1px solid var(--card-border)',
+                                        background: isSelected ? 'var(--accent-primary)' : 'var(--card-bg)',
+                                        color: isSelected ? '#ffffff' : 'var(--text-secondary)',
+                                        cursor: 'pointer',
+                                        transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
+                                        boxShadow: isSelected ? '0 2px 10px var(--accent-glow)' : '0 1px 3px rgba(15, 23, 42, 0.03)'
+                                    }}
+                                >
+                                    {tab === 'All' ? '⚡ All Skills' : tab}
+                                </motion.button>
+                            );
+                        })}
+                    </div>
+                </motion.div>
 
                 <motion.div
-                    variants={containerVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, margin: "-100px" }}
-                    style={{
-                        display: 'grid',
-                        gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-                        gap: '2rem'
-                    }}
+                    layout
+                    className={selectedCategory === 'All' ? 'skills-grid' : ''}
+                    style={selectedCategory === 'All' ? {} : { maxWidth: '600px', margin: '0 auto', width: '100%' }}
                 >
-                    {skillCategories.map((category, idx) => (
-                        <motion.div key={idx} variants={itemVariants}>
-                            <SpotlightCard
-                                className="glass-card"
-                                spotlightColor="rgba(99, 102, 241, 0.15)"
-                                style={{ height: '100%', border: '1px solid rgba(255,255,255,0.05)' }}
+                    <AnimatePresence mode="popLayout">
+                        {displayedCategories.map((category, cIdx) => (
+                            <motion.div
+                                key={category.id}
+                                layout
+                                initial={{ opacity: 0, y: 14, scale: 0.98 }}
+                                animate={{ opacity: 1, y: 0, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.98 }}
+                                transition={{ duration: 0.35, delay: cIdx * 0.05, ease: [0.16, 1, 0.3, 1] }}
+                                whileHover={{ y: -2 }}
                             >
-                                <div style={{ padding: '2.5rem' }}>
-                                    <div style={{ marginBottom: '2rem', borderBottom: '2px solid rgba(82, 39, 255, 0.2)', display: 'inline-block', paddingBottom: '0.5rem' }}>
-                                        <GradientText
-                                            colors={['#5227FF', '#FF9FFC', '#B19EEF', '#5227FF']}
-                                            animationSpeed={6}
-                                            showBorder={false}
-                                        >
-                                            <h3 style={{
-                                                fontSize: '1.5rem',
-                                                color: 'var(--text-primary)',
-                                                margin: 0
-                                            }}>
-                                                {category.title}
-                                            </h3>
-                                        </GradientText>
-                                    </div>
-
-                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                                        {category.skills.map((skill, sIdx) => (
-                                            <div key={sIdx}>
-                                                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.6rem' }}>
-                                                    <span style={{ fontWeight: '600', color: 'var(--text-secondary)' }}>{skill.name}</span>
-                                                    <span style={{ color: 'var(--accent-primary)', fontSize: '0.9rem' }}>{skill.level}</span>
-                                                </div>
-                                                <div style={{
-                                                    height: '8px',
-                                                    background: 'rgba(255,255,255,0.05)',
-                                                    borderRadius: '10px',
-                                                    overflow: 'hidden',
-                                                    border: '1px solid rgba(255,255,255,0.03)'
+                                <SpotlightCard
+                                    className="glass-card"
+                                    spotlightColor="var(--card-hover-glow)"
+                                    style={{ height: '100%' }}
+                                >
+                                    <div style={{ padding: '1.15rem 1.25rem' }}>
+                                        <div style={{
+                                            display: 'flex',
+                                            justifyContent: 'space-between',
+                                            alignItems: 'center',
+                                            marginBottom: '0.85rem',
+                                            paddingBottom: '0.45rem',
+                                            borderBottom: '1px solid var(--card-border)'
+                                        }}>
+                                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem' }}>
+                                                <span style={{ fontSize: '1.25rem' }}>{category.icon}</span>
+                                                <h3 style={{
+                                                    fontSize: '0.98rem',
+                                                    fontWeight: '800',
+                                                    color: 'var(--text-primary)',
+                                                    margin: 0
                                                 }}>
-                                                    <motion.div
-                                                        initial={{ width: 0 }}
-                                                        whileInView={{ width: skill.level }}
-                                                        transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }}
-                                                        viewport={{ once: true }}
-                                                        style={{
-                                                            height: '100%',
-                                                            background: 'linear-gradient(90deg, #5227FF, #FF9FFC)',
-                                                            borderRadius: '10px'
-                                                        }}
-                                                    />
-                                                </div>
+                                                    {category.title}
+                                                </h3>
                                             </div>
-                                        ))}
+                                            <span className="badge-pill" style={{ fontSize: '0.7rem', padding: '0.15rem 0.55rem' }}>
+                                                {category.skills.length} Skills
+                                            </span>
+                                        </div>
+
+                                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                                            {category.skills.map((skill, sIdx) => (
+                                                <div
+                                                    key={sIdx}
+                                                    style={{
+                                                        display: 'flex',
+                                                        justifyContent: 'space-between',
+                                                        alignItems: 'center',
+                                                        padding: '0.42rem 0.65rem',
+                                                        borderRadius: '8px',
+                                                        background: 'rgba(255, 255, 255, 0.03)',
+                                                        border: '1px solid var(--card-border)'
+                                                    }}
+                                                >
+                                                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                                        <div style={{
+                                                            width: '6px',
+                                                            height: '6px',
+                                                            borderRadius: '50%',
+                                                            background: 'var(--accent-primary)',
+                                                            opacity: 0.85
+                                                        }} />
+                                                        <span style={{
+                                                            fontWeight: '600',
+                                                            fontSize: '0.84rem',
+                                                            color: 'var(--text-primary)'
+                                                        }}>
+                                                            {skill.name}
+                                                        </span>
+                                                    </div>
+                                                    <span style={{
+                                                        color: 'var(--accent-primary)',
+                                                        fontSize: '0.75rem',
+                                                        fontWeight: '700',
+                                                        fontFamily: 'JetBrains Mono, monospace',
+                                                        background: 'rgba(255, 85, 0, 0.08)',
+                                                        padding: '0.12rem 0.45rem',
+                                                        borderRadius: '4px',
+                                                        border: '1px solid rgba(255, 85, 0, 0.16)'
+                                                    }}>
+                                                        {skill.level}%
+                                                    </span>
+                                                </div>
+                                            ))}
+                                        </div>
                                     </div>
-                                </div>
-                            </SpotlightCard>
-                        </motion.div>
-                    ))}
+                                </SpotlightCard>
+                            </motion.div>
+                        ))}
+                    </AnimatePresence>
                 </motion.div>
             </div>
         </section>
@@ -156,3 +208,4 @@ const Skills = () => {
 };
 
 export default Skills;
+

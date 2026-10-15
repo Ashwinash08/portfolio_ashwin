@@ -1,7 +1,7 @@
 import './StarBorder.css';
 
 const StarBorder = ({
-    as: Component = 'div',
+    as: Tag = 'div',
     className = '',
     color = 'white',
     speed = '6s',
@@ -10,7 +10,7 @@ const StarBorder = ({
     ...rest
 }) => {
     return (
-        <Component
+        <Tag
             className={`star-border-container ${className}`}
             style={{
                 padding: `${thickness}px 0`,

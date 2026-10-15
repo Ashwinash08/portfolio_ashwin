@@ -1,89 +1,118 @@
+import React from 'react';
 import GradientText from './GradientText';
 import SpotlightCard from './SpotlightCard';
-import Particles from './Particles';
-import FadeContent from './FadeContent';
+import { motion } from 'framer-motion';
 
-const Experience = () => {
+const Experience = ({ onNavigate }) => {
     const experiences = [
         {
-            company: "VTech Integrated Solution",
+            company: "Excerpt Technologies PVT LTD",
+            position: "AI, ML & DL Engineer Intern",
+            duration: "3 Month Internship",
+            type: "Trainee / Intern",
+            description: "Worked on AI, ML & DL projects using Python. Focused on building and optimising machine learning models, working on neural networks and other AI concepts.",
+            tech: ["Python", "AI", "ML", "DL"]
+        },
+        {
+            company: "VTech Integrated Solutions",
             position: "Web Development Intern",
-            description: "Trainee at Vtech Integrated Solutions [1 month]. Internship project on web development using Django.",
-            tech: ["DJango", "HTML", "CSS"],
-            github: "https://github.com"
+            duration: "1 Month Internship",
+            type: "Trainee / Intern",
+            description: "Built full-stack web development components using Python and Django. Worked on backend routing, views, template rendering, and database integration.",
+            tech: ["Python", "Django", "HTML5", "CSS3", "JavaScript"]
         }
     ];
 
     return (
-        <section id="experience" className="section" style={{ background: 'var(--bg-primary)', position: 'relative', overflow: 'hidden' }}>
-            <Particles
-                particleCount={160}
-                particleSpread={10}
-                speed={0.1}
-                particleColors={['#5227FF', '#FF9FFC', '#B19EEF']}
-                moveParticlesOnHover={true}
-                particleHoverFactor={2}
-                alphaParticles={true}
-                particleBaseSize={100}
-                sizeRandomness={1}
-                cameraDistance={25}
-                disableRotation={false}
-            />
+        <section id="experience" className="section" style={{ position: 'relative' }}>
+            <div className="container">
+                <motion.div
+                    className="section-header"
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                >
+                    <span className="section-subtitle">Career Path</span>
+                    <GradientText
+                        className="section-title"
+                        colors={['#ffffff', '#ff8c3b', '#ff5500', '#ffffff']}
+                        animationSpeed={6}
+                        showBorder={false}
+                    >
+                        Experience & Internships
+                    </GradientText>
+                </motion.div>
 
-            <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-                <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-                    <FadeContent blur={true} duration={1000}>
-                        <span className="section-subtitle">Professional Journey</span>
-                        <GradientText
-                            className="section-title"
-                            colors={['#5227FF', '#FF9FFC', '#B19EEF', '#5227FF']}
-                            animationSpeed={6}
-                            showBorder={false}
-                        >
-                            Internship
-                        </GradientText>
-                    </FadeContent>
-                </div>
-
-                <div style={{ maxWidth: '1000px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+                <div className="grid-cols-2" style={{ marginBottom: '0.85rem' }}>
                     {experiences.map((exp, idx) => (
-                        <FadeContent key={idx} blur={true} duration={1000} delay={idx * 200}>
+                        <motion.div
+                            key={idx}
+                            initial={{ opacity: 0, y: 14 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.35, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                            whileHover={{ y: -2 }}
+                        >
                             <SpotlightCard
                                 className="glass-card"
-                                spotlightColor="rgba(99, 102, 241, 0.15)"
-                                style={{ width: '100%' }}
+                                spotlightColor="var(--card-hover-glow)"
+                                style={{ width: '100%', height: '100%' }}
                             >
-                                <div style={{ padding: '2.5rem', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1.5rem' }}>
-                                        <div>
-                                            <GradientText
-                                                colors={['#5227FF', '#FF9FFC', '#B19EEF', '#5227FF']}
-                                                animationSpeed={6}
-                                                showBorder={false}
-                                            >
-                                                <h3 style={{ fontSize: 'clamp(1.5rem, 5vw, 2rem)', fontWeight: '700', color: 'var(--text-primary)', margin: 0 }}>
-                                                    {exp.company}
-                                                </h3>
-                                            </GradientText>
-                                            <p style={{ color: 'var(--accent-primary)', fontWeight: '600', fontSize: '1.1rem', marginTop: '0.4rem' }}>
-                                                {exp.position}
-                                            </p>
+                                <div style={{ padding: '1.2rem 1.35rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%', gap: '0.65rem' }}>
+                                    <div>
+                                        {/* Top Meta Row: Duration Badge + GitHub Action (Uncolliding) */}
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.45rem' }}>
+                                            <span style={{
+                                                fontSize: '0.72rem',
+                                                color: 'var(--accent-primary)',
+                                                fontWeight: '700',
+                                                textTransform: 'uppercase',
+                                                letterSpacing: '0.6px',
+                                                background: 'rgba(79, 70, 229, 0.08)',
+                                                padding: '0.18rem 0.6rem',
+                                                borderRadius: '20px',
+                                                border: '1px solid rgba(79, 70, 229, 0.16)'
+                                            }}>
+                                                {exp.duration} • {exp.type}
+                                            </span>
+
                                         </div>
+
+                                        <h3 style={{
+                                            fontSize: '1.05rem',
+                                            fontWeight: '800',
+                                            color: 'var(--text-primary)',
+                                            margin: '0 0 0.15rem 0'
+                                        }}>
+                                            {exp.company}
+                                        </h3>
+                                        <p style={{
+                                            color: 'var(--accent-primary)',
+                                            fontWeight: '600',
+                                            fontSize: '0.84rem',
+                                            margin: '0 0 0.55rem 0'
+                                        }}>
+                                            {exp.position}
+                                        </p>
+
+                                        <p style={{
+                                            color: 'var(--text-secondary)',
+                                            lineHeight: '1.55',
+                                            fontSize: '0.84rem',
+                                            margin: 0
+                                        }}>
+                                            {exp.description}
+                                        </p>
                                     </div>
 
-                                    <p style={{ color: 'var(--text-secondary)', lineHeight: '1.8', fontSize: '1.1rem', maxWidth: '850px' }}>
-                                        {exp.description}
-                                    </p>
-
-                                    <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginTop: '0.5rem' }}>
+                                    <div style={{ display: 'flex', gap: '0.3rem', flexWrap: 'wrap', paddingTop: '0.55rem', borderTop: '1px solid var(--card-border)' }}>
                                         {exp.tech.map((skill, sIdx) => (
                                             <span key={sIdx} style={{
-                                                fontSize: '0.85rem',
+                                                fontSize: '0.7rem',
                                                 color: 'var(--text-primary)',
-                                                background: 'rgba(255, 255, 255, 0.05)',
-                                                padding: '0.4rem 1.2rem',
-                                                borderRadius: '10px',
-                                                border: '1px solid rgba(255, 255, 255, 0.1)',
+                                                background: 'var(--bg-tertiary)',
+                                                padding: '0.15rem 0.5rem',
+                                                borderRadius: '5px',
+                                                border: '1px solid var(--card-border)',
                                                 fontWeight: '500'
                                             }}>
                                                 {skill}
@@ -92,7 +121,7 @@ const Experience = () => {
                                     </div>
                                 </div>
                             </SpotlightCard>
-                        </FadeContent>
+                        </motion.div>
                     ))}
                 </div>
             </div>
@@ -101,3 +130,4 @@ const Experience = () => {
 };
 
 export default Experience;
+
