@@ -60,8 +60,8 @@ const Contact = ({ onNavigate }) => {
             ),
             label: 'LinkedIn',
             value: 'Ashwin E',
-            copyText: 'https://www.linkedin.com/in/ashwin-e-1ba28b348',
-            href: 'https://www.linkedin.com/in/ashwin-e-1ba28b348',
+            copyText: 'www.linkedin.com/in/ashwin-e-a2a011399',
+            href: 'https://www.linkedin.com/in/ashwin-e-a2a011399',
             color: '#0284c7'
         },
         {
@@ -313,25 +313,25 @@ const Contact = ({ onNavigate }) => {
                                         Send Message
                                     </motion.button>
 
-                                {formSubmitted && (
-                                    <motion.div
-                                        initial={{ opacity: 0, scale: 0.95 }}
-                                        animate={{ opacity: 1, scale: 1 }}
-                                        style={{
-                                            padding: '0.45rem',
-                                            background: 'rgba(16, 185, 129, 0.1)',
-                                            border: '1px solid rgba(16, 185, 129, 0.25)',
-                                            borderRadius: '6px',
-                                            color: '#10b981',
-                                            fontSize: '0.78rem',
-                                            fontWeight: '600',
-                                            textAlign: 'center'
-                                        }}
-                                    >
-                                        ✓ Mail client opened!
-                                    </motion.div>
-                                )}
-                            </form>
+                                    {formSubmitted && (
+                                        <motion.div
+                                            initial={{ opacity: 0, scale: 0.95 }}
+                                            animate={{ opacity: 1, scale: 1 }}
+                                            style={{
+                                                padding: '0.45rem',
+                                                background: 'rgba(16, 185, 129, 0.1)',
+                                                border: '1px solid rgba(16, 185, 129, 0.25)',
+                                                borderRadius: '6px',
+                                                color: '#10b981',
+                                                fontSize: '0.78rem',
+                                                fontWeight: '600',
+                                                textAlign: 'center'
+                                            }}
+                                        >
+                                            ✓ Mail client opened!
+                                        </motion.div>
+                                    )}
+                                </form>
                             </div>
                         </SpotlightCard>
                     </motion.div>

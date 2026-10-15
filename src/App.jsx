@@ -21,6 +21,12 @@ const SECTIONS = [
   { id: 'contact', label: 'Contact' }
 ];
 
+const SectionDivider = () => (
+  <div className="section-divider-container" aria-hidden="true">
+    <div className="section-divider-line" />
+  </div>
+);
+
 function App() {
   const [theme, setTheme] = useState(() => {
     const saved = localStorage.getItem('portfolio-theme');
@@ -87,21 +93,27 @@ function App() {
       <main style={{ position: 'relative', zIndex: 1 }}>
         {/* Hero Section Frame matching Reference Image */}
         <Hero onNavigate={navigateTo} />
+        <SectionDivider />
 
         {/* About Section */}
         <About onNavigate={navigateTo} />
+        <SectionDivider />
 
         {/* Academic Journey (Education first) */}
         <Education onNavigate={navigateTo} />
+        <SectionDivider />
 
         {/* Skills & Technical Stack (then Skills) */}
         <Skills onNavigate={navigateTo} />
+        <SectionDivider />
 
         {/* Featured Projects (and Projects) */}
         <Projects onNavigate={navigateTo} />
+        <SectionDivider />
 
         {/* Career & Experience */}
         <Experience onNavigate={navigateTo} />
+        <SectionDivider />
 
         {/* Get in Touch */}
         <Contact onNavigate={navigateTo} />

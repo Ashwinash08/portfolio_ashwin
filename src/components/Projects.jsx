@@ -23,7 +23,7 @@ const Projects = ({ onNavigate }) => {
             desc: "Predictive machine learning model analyzing historical crypto market trends and price movements to assist traders and investors in making informed decisions.",
             tech: ["Python", "Machine Learning", "Pandas", "Matplotlib", "Scikit-Learn"],
             highlights: ["Historical data preprocessing & cleansing", "Time-series regression analysis", "Visual market trends & moving averages"],
-            github: "https://github.com/Ashwinash08"
+            github: "https://github.com/Ashwinash08/bitcoin_price_prediction"
         },
         {
             title: "Organic Food Traceability with Blockchain & AI",
@@ -31,7 +31,7 @@ const Projects = ({ onNavigate }) => {
             desc: "Secure and transparent food traceability system utilizing Blockchain for immutable provenance records and AI for predictive organic authenticity analysis.",
             tech: ["Python", "Blockchain", "AI", "MySQL", "Cryptography"],
             highlights: ["Immutable supply chain provenance ledger", "AI-based authenticity scoring & verification", "Counterfeiting & fraud prevention"],
-            github: "https://github.com/Ashwinash08"
+            github: "https://github.com/Ashwinash08/organicfood_traceability_system_usingBlockchain"
         },
         {
             title: "AI Powered Digital Twin Healthcare Platform",
@@ -39,7 +39,7 @@ const Projects = ({ onNavigate }) => {
             desc: "Real-time healthcare monitoring and analysis platform featuring AI-powered digital twins and seamless data integration for personalized medical insights.",
             tech: ["Python", "JavaScript", "AI", "CSS3", "SQLite"],
             highlights: ["Real-time patient biometric monitoring", "AI-driven personalized health insights", "Seamless clinical data integration"],
-            github: "https://github.com/Ashwinash08"
+            github: "https://github.com/Ashwinash08/ai_powered_digital_twin_healthcare_platform"
         }
     ];
 
