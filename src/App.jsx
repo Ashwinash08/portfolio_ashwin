@@ -6,10 +6,12 @@ import Education from './components/Education';
 import Projects from './components/Projects';
 import Experience from './components/Experience';
 import Contact from './components/Contact';
+import CustomCursor from './components/CustomCursor';
 
 function App() {
   return (
     <>
+      <CustomCursor />
       <Header />
       <main>
         <Hero />

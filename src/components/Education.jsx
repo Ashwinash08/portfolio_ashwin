@@ -66,7 +66,7 @@ const Education = () => {
                                     animationDelay: `${index * 0.2}s`
                                 }}
                             >
-                                <div style={{ padding: '2.5rem', height: '100%', position: 'relative' }}>
+                                <div style={{ padding: 'clamp(1.5rem, 4vw, 2.5rem)', height: '100%', position: 'relative' }}>
                                     <div style={{
                                         position: 'absolute',
                                         top: 0,
@@ -76,35 +76,36 @@ const Education = () => {
                                         background: 'var(--accent-primary)'
                                     }}></div>
 
-                                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem', marginBottom: '1rem' }}>
-                                        <div>
-                                            <GradientText
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1.9rem', marginBottom: '1.5rem' }}>
+                                        <div style={{ flex: '1 1 200px' }}>
+                                            <div
                                                 colors={['#5227FF', '#FF9FFC', '#B19EEF', '#5227FF']}
                                                 animationSpeed={6}
                                                 showBorder={false}
                                             >
-                                                <h3 style={{ fontSize: '1.1rem', fontWeight: '700', color: 'var(--text-primary)', margin: 0 }}>
+                                                <h3 style={{ display: 'flex', justifyContent: 'start', alignItems: 'flex-start', flexWrap: 'wrap', fontSize: '1.2rem', fontWeight: '800', color: 'var(--text-primary)', marginLeft: '0px', lineHeight: '1.2', }}>
                                                     {item.degree}
                                                 </h3>
-                                            </GradientText>
-                                            <p style={{ color: 'var(--accent-primary)', fontWeight: '700', fontSize: '1.1rem', letterSpacing: '0.6px', marginTop: '0.5rem' }}>
+                                            </div>
+                                            <p style={{ color: 'var(--accent-primary)', fontWeight: '700', fontSize: '1.1rem', letterSpacing: '0.6px', marginTop: '0.6rem' }}>
                                                 {item.institution}
                                             </p>
                                         </div>
-                                        <span style={{
-                                            padding: '0.4rem 1rem',
+                                        <div style={{
+                                            padding: '0.5rem 1.25rem',
                                             background: 'rgba(99, 102, 241, 0.1)',
                                             borderRadius: '50px',
                                             color: 'var(--accent-primary)',
-                                            fontSize: '0.85rem',
+                                            fontSize: '0.9rem',
                                             fontWeight: '600',
-                                            border: '1px solid rgba(99, 102, 241, 0.2)'
+                                            border: '1px solid rgba(99, 102, 241, 0.2)',
+                                            whiteSpace: 'nowrap'
                                         }}>
                                             {item.period}
-                                        </span>
+                                        </div>
                                     </div>
 
-                                    <p style={{ color: 'var(--text-secondary)', lineHeight: '1.7', fontSize: '1.05rem' }}>
+                                    <p style={{ color: 'var(--text-secondary)', lineHeight: '1.8', fontSize: '1.1rem', margin: 0 }}>
                                         {item.description}
                                     </p>
                                 </div>

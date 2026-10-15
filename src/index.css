@@ -60,11 +60,36 @@ ul {
   list-style: none;
 }
 
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bg-tertiary);
+  border-radius: 10px;
+  border: 2px solid var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-primary);
+}
+
 /* Utilities */
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 2.5rem;
+  }
 }
 
 .gradient-text {
@@ -85,6 +110,7 @@ ul {
   cursor: pointer;
   border: none;
   font-size: 1rem;
+  white-space: nowrap;
 }
 
 .btn-primary {
@@ -153,22 +179,29 @@ ul {
 }
 
 .section {
-  padding: 6rem 0;
+  padding: 5rem 0;
   position: relative;
   scroll-margin-top: var(--nav-height);
 }
 
+@media (min-width: 768px) {
+  .section {
+    padding: 8rem 0;
+  }
+}
+
 .section-title {
-  font-size: 2.5rem;
+  font-size: clamp(2rem, 5vw, 3rem);
   margin-bottom: 1rem;
   font-weight: 700;
+  line-height: 1.2;
 }
 
 .section-subtitle {
   color: var(--accent-primary);
   text-transform: uppercase;
   letter-spacing: 2px;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 600;
   margin-bottom: 1rem;
   display: block;
@@ -177,12 +210,23 @@ ul {
 .glass-card {
   background: var(--bg-tertiary);
   border: 1px solid var(--glass-border);
-  border-radius: 20px;
+  border-radius: 24px;
   backdrop-filter: blur(var(--glass-blur));
-  transition: transform 0.3s var(--ease-spring), border-color 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
 }
 
 .glass-card:hover {
-  transform: translateY(-5px);
-  border-color: var(--accent-primary);
+  transform: translateY(-8px);
+  border-color: rgba(99, 102, 241, 0.3);
+}
+
+@media (max-width: 640px) {
+  .btn {
+    width: 100%;
+    padding: 0.75rem 1.5rem;
+  }
+  
+  .section {
+    padding: 4rem 0;
+  }
 }

@@ -5,7 +5,7 @@ import FadeContent from './FadeContent';
 
 import eventImg from '../assets/event-mgmt.png';
 import bitcoinImg from '../assets/bitcoin.png';
-import foodImg from '../assets/food.png';
+import foodImg from '../assets/food.avif';
 
 const Projects = () => {
     const projects = [
@@ -63,71 +63,79 @@ const Projects = () => {
                     </FadeContent>
                 </div>
 
-                <div style={{ maxWidth: '1000px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+                <div style={{ maxWidth: '1000px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '3rem' }}>
                     {projects.map((project, idx) => (
                         <FadeContent key={idx} blur={true} duration={1000} delay={idx * 200}>
                             <SpotlightCard
                                 className="glass-card"
                                 spotlightColor="rgba(99, 102, 241, 0.15)"
-                                style={{ width: '100%' }}
+                                style={{ width: '100%', overflow: 'hidden' }}
                             >
-                                <div style={{ padding: '2.5rem', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem' }}>
+                                <div style={{ padding: 'clamp(1.5rem, 5vw, 2.5rem)', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
                                         <div>
                                             <GradientText
                                                 colors={['#5227FF', '#FF9FFC', '#B19EEF', '#5227FF']}
                                                 animationSpeed={6}
                                                 showBorder={false}
                                             >
-                                                <h3 style={{ fontSize: '1.5rem', fontWeight: '700', color: 'var(--text-primary)', margin: 0 }}>
+                                                <h3 style={{ fontSize: '1.75rem', fontWeight: '700', color: 'var(--text-primary)', margin: 0 }}>
                                                     {project.title}
                                                 </h3>
                                             </GradientText>
-                                            <p style={{ color: 'var(--accent-primary)', fontWeight: '600', fontSize: '1.1rem', marginTop: '0.4rem' }}>
+                                            <p style={{ color: 'var(--accent-primary)', fontWeight: '600', fontSize: '1.1rem', marginTop: '0.5rem' }}>
                                                 {project.category}
                                             </p>
                                         </div>
-                                        <div style={{
-                                            padding: '0.5rem 1.25rem',
-                                            background: 'rgba(99, 102, 241, 0.1',
-                                            borderRadius: '50px',
-                                            color: 'var(--accent-primary)',
-                                            fontSize: '0.9rem',
-                                            fontWeight: '600',
-                                            border: '1px solid rgba(99, 102, 241, 0.2)'
-                                        }}>
-                                            View Project &rarr;
-                                        </div>
                                     </div>
 
-                                    <div style={{ display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap' }}>
-                                        <div style={{
-                                            flex: '1 1 300px',
-                                            aspectRatio: '16/9',
-                                            background: 'rgba(255,255,255,0.03)',
-                                            borderRadius: '12px',
-                                            overflow: 'hidden',
-                                            border: '1px solid rgba(255,255,255,0.05)'
-                                        }}>
-                                            <div style={{
-                                                width: '100%',
-                                                height: '100%',
-                                                backgroundImage: `url(${project.image})`,
-                                                backgroundSize: 'cover',
-                                                backgroundPosition: 'center',
-                                                backgroundRepeat: 'no-repeat',
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                                justifyContent: 'center',
-                                                color: 'var(--text-primary)',
-                                                transition: 'transform 0.5s ease'
-                                            }}>
+                                    <div style={{
+                                        display: 'grid',
+                                        gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+                                        gap: '2.5rem',
+                                        alignItems: 'start'
+                                    }}>
+                                        <div
+                                            className="project-image-container"
+                                            style={{
+                                                aspectRatio: '16/9',
+                                                background: 'rgba(255,255,255,0.03)',
+                                                borderRadius: '16px',
+                                                overflow: 'hidden',
+                                                border: '1px solid rgba(255,255,255,0.08)',
+                                                position: 'relative'
+                                            }}
+                                            onMouseEnter={(e) => {
+                                                const img = e.currentTarget.querySelector('.project-image');
+                                                if (img) img.style.transform = 'scale(1.1)';
+                                            }}
+                                            onMouseLeave={(e) => {
+                                                const img = e.currentTarget.querySelector('.project-image');
+                                                if (img) img.style.transform = 'scale(1)';
+                                            }}
+                                        >
+                                            <div
+                                                className="project-image"
+                                                style={{
+                                                    width: '100%',
+                                                    height: '100%',
+                                                    backgroundImage: `url(${project.image})`,
+                                                    backgroundSize: 'cover',
+                                                    backgroundPosition: 'center',
+                                                    backgroundRepeat: 'no-repeat',
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    justifyContent: 'center',
+                                                    color: 'var(--text-primary)',
+                                                    transition: 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)'
+                                                }}
+                                            >
                                                 {!project.image && "Project Preview"}
                                             </div>
                                         </div>
 
-                                        <div style={{ flex: '2 1 400px' }}>
-                                            <p style={{ color: 'var(--text-secondary)', lineHeight: '1.8', fontSize: '1.05rem', marginBottom: '1.5rem' }}>
+                                        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                                            <p style={{ color: 'var(--text-secondary)', lineHeight: '1.8', fontSize: '1.1rem', margin: 0 }}>
                                                 {project.desc}
                                             </p>
 
@@ -137,9 +145,10 @@ const Projects = () => {
                                                         fontSize: '0.85rem',
                                                         color: 'var(--text-primary)',
                                                         background: 'rgba(255, 255, 255, 0.05)',
-                                                        padding: '0.4rem 1rem',
-                                                        borderRadius: '8px',
-                                                        border: '1px solid rgba(255, 255, 255, 0.1)'
+                                                        padding: '0.5rem 1.2rem',
+                                                        borderRadius: '10px',
+                                                        border: '1px solid rgba(255, 255, 255, 0.1)',
+                                                        fontWeight: '500'
                                                     }}>
                                                         {skill}
                                                     </span>

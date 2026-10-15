@@ -1,8 +1,6 @@
 import LiquidEther from './LiquidEther';
-import BlurText from './BlurText';
-import StarBorder from './StarBorder';
-import FadeContent from './FadeContent';
 import GradientText from './GradientText';
+import { motion } from 'framer-motion';
 
 const Hero = () => {
     return (
@@ -11,7 +9,7 @@ const Hero = () => {
             display: 'flex',
             alignItems: 'center',
             position: 'relative',
-            paddingTop: '80px',
+            padding: '100px 0',
             overflow: 'hidden'
         }}>
             {/* Liquid Ether Background Effect */}
@@ -46,14 +44,15 @@ const Hero = () => {
             {/* Background Gradient Blob */}
             <div style={{
                 position: 'absolute',
-                top: '-20%',
-                right: '-10%',
-                width: '600px',
-                height: '600px',
-                background: 'radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(0,0,0,0) 70%)',
+                top: '-10%',
+                right: '-5%',
+                width: 'clamp(300px, 50vw, 800px)',
+                height: 'clamp(300px, 50vw, 800px)',
+                background: 'radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, rgba(0,0,0,0) 70%)',
                 borderRadius: '50%',
                 zIndex: 1,
-                pointerEvents: 'none'
+                pointerEvents: 'none',
+                filter: 'blur(60px)'
             }}></div>
 
             <div className="container" style={{ position: 'relative', zIndex: 2 }}>
@@ -65,18 +64,31 @@ const Hero = () => {
                         alignItems: 'center'
                     }}
                 >
-                    <FadeContent blur={true} duration={1000} delay={200}>
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                    >
                         <div style={{
                             display: 'flex',
                             flexDirection: 'column',
                             alignItems: 'center',
-                            gap: '1rem',
-                            marginBottom: '2rem'
+                            gap: '1.5rem',
+                            marginBottom: '2.5rem'
                         }}>
-
-                            <h1 style={{ fontSize: 'clamp(2rem, 10vw, 2.5rem)', fontWeight: '800', margin: 0 }}>
-                                WELCOME TO MY PORTFOLIO
-                            </h1>
+                            <span style={{
+                                color: 'var(--accent-primary)',
+                                fontWeight: '700',
+                                letterSpacing: '4px',
+                                textTransform: 'uppercase',
+                                fontSize: '0.9rem',
+                                background: 'rgba(99, 102, 241, 0.1)',
+                                padding: '0.5rem 1.5rem',
+                                borderRadius: '50px',
+                                border: '1px solid rgba(99, 102, 241, 0.2)'
+                            }}>
+                                Welcome to my world
+                            </span>
 
                             <GradientText
                                 className="hero-name"
@@ -84,34 +96,113 @@ const Hero = () => {
                                 animationSpeed={10}
                                 showBorder={false}
                             >
-                                <h1 style={{ fontSize: 'clamp(3rem, 10vw, 6rem)', fontWeight: '900', margin: 0 }}>
+                                <h1 style={{
+                                    fontSize: 'clamp(3.5rem, 12vw, 8rem)',
+                                    fontWeight: '900',
+                                    margin: 0,
+                                    lineHeight: '0.9',
+                                    letterSpacing: '-2px'
+                                }}>
                                     Ashwin E
                                 </h1>
                             </GradientText>
-                        </div>
-                    </FadeContent>
 
-                    <FadeContent blur={true} duration={1000} delay={600}>
+                            <h2 style={{
+                                fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
+                                fontWeight: '700',
+                                margin: 0,
+                                opacity: 0.9
+                            }}>
+
+                            </h2>
+                        </div>
+                    </motion.div>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                    >
                         <p style={{
-                            fontSize: '1.4rem',
+                            fontSize: 'clamp(1.1rem, 2.5vw, 1.4rem)',
                             color: 'var(--text-secondary)',
-                            marginBottom: '3rem',
-                            maxWidth: '800px',
-                            lineHeight: '1.6'
+                            marginBottom: '3.5rem',
+                            maxWidth: '750px',
+                            lineHeight: '1.6',
+                            fontWeight: '400'
                         }}>
-                            I'm a passionate developer specializing in building exceptional digital experiences.
-                            Currently focused on creating accessible, human-centered products.
+                            I'm a passionate developer currently pursuing my Master of Computer Applications [MCA].
+                            I specialize in building exceptional digital experiences and human-centered products.
                         </p>
-                    </FadeContent>
+                    </motion.div>
 
-                    <FadeContent blur={true} duration={1000} delay={1000}>
-                        <div style={{ display: 'flex', gap: '1.5rem' }}>
-                            <a href="#projects" className="btn btn-primary">View Work</a>
-                            <a href="#contact" className="btn btn-outline" style={{ border: '1px solid var(--accent-primary)', padding: '0.8rem 2rem', borderRadius: '8px' }}>Contact Me</a>
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                    >
+                        <div style={{
+                            display: 'flex',
+                            gap: '1.5rem',
+                            flexWrap: 'wrap',
+                            justifyContent: 'center',
+                            width: '100%',
+                            maxWidth: '500px'
+                        }}>
+                            <a href="#projects" className="btn btn-primary" style={{ padding: '1rem 2.5rem', fontSize: '1.1rem' }}>
+                                View My Work
+                            </a>
+                            <a href="#contact" className="btn btn-outline" style={{
+                                padding: '1rem 2.5rem',
+                                borderRadius: '50px',
+                                fontSize: '1.1rem',
+                                border: '1px solid rgba(255,255,255,0.1)'
+                            }}>
+                                Let's Talk
+                            </a>
                         </div>
-                    </FadeContent>
+                    </motion.div>
                 </div>
             </div>
+
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1, duration: 1 }}
+                style={{
+                    position: 'absolute',
+                    bottom: '40px',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    gap: '10px'
+                }}
+            >
+                <div style={{
+                    width: '30px',
+                    height: '50px',
+                    border: '2px solid rgba(255,255,255,0.2)',
+                    borderRadius: '20px',
+                    position: 'relative'
+                }}>
+                    <motion.div
+                        animate={{ y: [0, 15, 0] }}
+                        transition={{ repeat: Infinity, duration: 2 }}
+                        style={{
+                            width: '6px',
+                            height: '6px',
+                            background: 'var(--accent-primary)',
+                            borderRadius: '50%',
+                            position: 'absolute',
+                            left: '50%',
+                            top: '10px',
+                            marginLeft: '-3px'
+                        }}
+                    />
+                </div>
+            </motion.div>
         </section>
     );
 };

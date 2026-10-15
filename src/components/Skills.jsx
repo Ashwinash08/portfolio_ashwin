@@ -2,6 +2,7 @@ import GradientText from './GradientText';
 import SpotlightCard from './SpotlightCard';
 import Particles from './Particles';
 import FadeContent from './FadeContent';
+import { motion } from 'framer-motion';
 
 const Skills = () => {
     const skillCategories = [
@@ -27,11 +28,27 @@ const Skills = () => {
         {
             title: "Tools & Others",
             skills: [
-                { name: "VS Code", level: "85%" },
+                { name: "VS Code", level: "80%" },
+                { name: "Antigravity", level: "75%" },
                 { name: "Android Studio", level: "60%" }
             ]
         }
     ];
+
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1
+            }
+        }
+    };
+
+    const itemVariants = {
+        hidden: { y: 20, opacity: 0 },
+        visible: { y: 0, opacity: 1 }
+    };
 
     return (
         <section id="skills" className="section" style={{ background: 'var(--bg-primary)', position: 'relative', overflow: 'hidden' }}>
@@ -64,17 +81,23 @@ const Skills = () => {
                     </FadeContent>
                 </div>
 
-                <div style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-                    gap: '2rem'
-                }}>
+                <motion.div
+                    variants={containerVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-100px" }}
+                    style={{
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+                        gap: '2rem'
+                    }}
+                >
                     {skillCategories.map((category, idx) => (
-                        <FadeContent key={idx} blur={true} duration={1000} delay={idx * 200}>
+                        <motion.div key={idx} variants={itemVariants}>
                             <SpotlightCard
                                 className="glass-card"
                                 spotlightColor="rgba(99, 102, 241, 0.15)"
-                                style={{ height: '100%' }}
+                                style={{ height: '100%', border: '1px solid rgba(255,255,255,0.05)' }}
                             >
                                 <div style={{ padding: '2.5rem' }}>
                                     <div style={{ marginBottom: '2rem', borderBottom: '2px solid rgba(82, 39, 255, 0.2)', display: 'inline-block', paddingBottom: '0.5rem' }}>
@@ -101,26 +124,32 @@ const Skills = () => {
                                                     <span style={{ color: 'var(--accent-primary)', fontSize: '0.9rem' }}>{skill.level}</span>
                                                 </div>
                                                 <div style={{
-                                                    height: '6px',
+                                                    height: '8px',
                                                     background: 'rgba(255,255,255,0.05)',
                                                     borderRadius: '10px',
-                                                    overflow: 'hidden'
+                                                    overflow: 'hidden',
+                                                    border: '1px solid rgba(255,255,255,0.03)'
                                                 }}>
-                                                    <div style={{
-                                                        height: '100%',
-                                                        width: skill.level,
-                                                        background: 'linear-gradient(90deg, #5227FF, #FF9FFC)',
-                                                        borderRadius: '10px'
-                                                    }}></div>
+                                                    <motion.div
+                                                        initial={{ width: 0 }}
+                                                        whileInView={{ width: skill.level }}
+                                                        transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }}
+                                                        viewport={{ once: true }}
+                                                        style={{
+                                                            height: '100%',
+                                                            background: 'linear-gradient(90deg, #5227FF, #FF9FFC)',
+                                                            borderRadius: '10px'
+                                                        }}
+                                                    />
                                                 </div>
                                             </div>
                                         ))}
                                     </div>
                                 </div>
                             </SpotlightCard>
-                        </FadeContent>
+                        </motion.div>
                     ))}
-                </div>
+                </motion.div>
             </div>
         </section>
     );
