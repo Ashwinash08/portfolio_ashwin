@@ -45,16 +45,18 @@ const Hero = ({ onNavigate }) => {
               {/* Status Badge */}
               <div style={{ marginBottom: '0.85rem' }}>
                 <span
-                  className="badge-pill"
+                  className="badge-pill hero-pill"
                   style={{
-                    background: 'rgba(0, 0, 0, 0.45)',
-                    borderColor: 'rgba(255, 255, 255, 0.16)',
-                    padding: '0.35rem 1rem',
-                    fontSize: '0.82rem'
+                    background: 'rgba(0, 0, 0, 0.55)',
+                    borderColor: 'rgba(255, 255, 255, 0.22)',
+                    padding: '0.38rem 1rem',
+                    fontSize: '0.82rem',
+                    color: '#ffffff',
+                    fontWeight: '600'
                   }}
                 >
                   <span className="radar-dot" style={{ width: '7px', height: '7px' }}></span>
-                  <span>MCA Graduate | Software Developer</span>
+                  <span style={{ color: '#ffffff' }}>MCA Graduate | Software Developer</span>
                 </span>
               </div>
 
@@ -132,13 +134,43 @@ const Hero = ({ onNavigate }) => {
 
               {/* Quick Info Badges */}
               <div className="hero-quick-stats">
-                <span className="badge-pill" style={{ background: 'rgba(255, 255, 255, 0.05)', fontSize: '0.76rem' }}>
+                <span
+                  className="badge-pill hero-pill"
+                  style={{
+                    background: 'rgba(0, 0, 0, 0.5)',
+                    border: '1px solid rgba(255, 255, 255, 0.22)',
+                    fontSize: '0.78rem',
+                    color: '#ffffff',
+                    fontWeight: '600',
+                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3)'
+                  }}
+                >
                   🎓 East Point College
                 </span>
-                <span className="badge-pill" style={{ background: 'rgba(255, 255, 255, 0.05)', fontSize: '0.76rem' }}>
+                <span
+                  className="badge-pill hero-pill"
+                  style={{
+                    background: 'rgba(0, 0, 0, 0.5)',
+                    border: '1px solid rgba(255, 255, 255, 0.22)',
+                    fontSize: '0.78rem',
+                    color: '#ffffff',
+                    fontWeight: '600',
+                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3)'
+                  }}
+                >
                   💻 Full-Stack & Python
                 </span>
-                <span className="badge-pill" style={{ background: 'rgba(255, 255, 255, 0.05)', fontSize: '0.76rem' }}>
+                <span
+                  className="badge-pill hero-pill"
+                  style={{
+                    background: 'rgba(0, 0, 0, 0.5)',
+                    border: '1px solid rgba(255, 255, 255, 0.22)',
+                    fontSize: '0.78rem',
+                    color: '#ffffff',
+                    fontWeight: '600',
+                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3)'
+                  }}
+                >
                   📍 Bangalore, India
                 </span>
               </div>

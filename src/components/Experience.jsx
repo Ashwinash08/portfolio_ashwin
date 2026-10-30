@@ -11,7 +11,8 @@ const Experience = ({ onNavigate }) => {
             duration: "3 Month Internship",
             type: "Trainee / Intern",
             description: "Worked on AI, ML & DL projects using Python. Focused on building and optimising machine learning models, working on neural networks and other AI concepts.",
-            tech: ["Python", "AI", "ML", "DL"]
+            tech: ["Python", "AI", "ML", "DL"],
+            certificateUrl: "/certificates/Certificate_ASHWIN . E.pdf"
         },
         {
             company: "VTech Integrated Solutions",
@@ -19,7 +20,8 @@ const Experience = ({ onNavigate }) => {
             duration: "1 Month Internship",
             type: "Trainee / Intern",
             description: "Built full-stack web development components using Python and Django. Worked on backend routing, views, template rendering, and database integration.",
-            tech: ["Python", "Django", "HTML5", "CSS3", "JavaScript"]
+            tech: ["Python", "Django", "HTML5", "CSS3", "JavaScript"],
+            certificateUrl: "/certificates/vtech-internship-certificate.pdf"
         }
     ];
 
@@ -59,22 +61,55 @@ const Experience = ({ onNavigate }) => {
                             >
                                 <div style={{ padding: '1.2rem 1.35rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%', gap: '0.65rem' }}>
                                     <div>
-                                        {/* Top Meta Row: Duration Badge + GitHub Action (Uncolliding) */}
-                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.45rem' }}>
+                                        {/* Top Meta Row: Duration Badge + View Certificate Link */}
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.55rem', flexWrap: 'wrap', gap: '0.5rem' }}>
                                             <span style={{
                                                 fontSize: '0.72rem',
                                                 color: 'var(--accent-primary)',
                                                 fontWeight: '700',
                                                 textTransform: 'uppercase',
                                                 letterSpacing: '0.6px',
-                                                background: 'rgba(79, 70, 229, 0.08)',
-                                                padding: '0.18rem 0.6rem',
+                                                background: 'rgba(255, 85, 0, 0.08)',
+                                                padding: '0.2rem 0.65rem',
                                                 borderRadius: '20px',
-                                                border: '1px solid rgba(79, 70, 229, 0.16)'
+                                                border: '1px solid rgba(255, 85, 0, 0.2)'
                                             }}>
                                                 {exp.duration} • {exp.type}
                                             </span>
 
+                                            <motion.a
+                                                whileHover={{ scale: 1.05, y: -1 }}
+                                                whileTap={{ scale: 0.95 }}
+                                                href={exp.certificateUrl}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="cert-btn-link"
+                                                style={{
+                                                    display: 'inline-flex',
+                                                    alignItems: 'center',
+                                                    gap: '0.35rem',
+                                                    padding: '0.24rem 0.7rem',
+                                                    borderRadius: '20px',
+                                                    fontSize: '0.74rem',
+                                                    fontWeight: '700',
+                                                    color: 'var(--text-primary)',
+                                                    background: 'rgba(255, 255, 255, 0.04)',
+                                                    border: '1px solid var(--card-border)',
+                                                    textDecoration: 'none',
+                                                    transition: 'all 0.2s ease',
+                                                    boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)'
+                                                }}
+                                            >
+                                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round" style={{ color: 'var(--accent-primary)' }}>
+                                                    <circle cx="12" cy="8" r="6"></circle>
+                                                    <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"></path>
+                                                </svg>
+                                                <span>View Certificate</span>
+                                                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.7 }}>
+                                                    <line x1="7" y1="17" x2="17" y2="7"></line>
+                                                    <polyline points="7 7 17 7 17 17"></polyline>
+                                                </svg>
+                                            </motion.a>
                                         </div>
 
                                         <h3 style={{

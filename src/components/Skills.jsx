@@ -12,11 +12,12 @@ const Skills = ({ onNavigate }) => {
             id: "Frontend",
             icon: "🌐",
             skills: [
-                { name: "HTML5", level: 90 },
-                { name: "CSS3 / Styling", level: 85 },
-                { name: "JavaScript", level: 80 },
-                { name: "C Language", level: 78 },
-                { name: "Java", level: 75 }
+                "HTML5",
+                "CSS3 / Styling",
+                "JavaScript",
+                "React",
+                "C Language",
+                "Java"
             ]
         },
         {
@@ -24,11 +25,11 @@ const Skills = ({ onNavigate }) => {
             id: "Backend",
             icon: "🗄️",
             skills: [
-                { name: "Python", level: 85 },
-                { name: "Django", level: 80 },
-                { name: "PHP", level: 75 },
-                { name: "MySQL", level: 80 },
-                { name: "MongoDB", level: 70 }
+                "Python",
+                "Django",
+                "PHP",
+                "MySQL",
+                "MongoDB"
             ]
         },
         {
@@ -36,10 +37,10 @@ const Skills = ({ onNavigate }) => {
             id: "Tools",
             icon: "🛠️",
             skills: [
-                { name: "VS Code", level: 90 },
-                { name: "Git / GitHub", level: 85 },
-                { name: "Antigravity IDE", level: 80 },
-                { name: "Android Studio", level: 70 }
+                "VS Code",
+                "Git / GitHub",
+                "Antigravity IDE",
+                "Android Studio"
             ]
         }
     ];
@@ -151,51 +152,22 @@ const Skills = ({ onNavigate }) => {
                                             </span>
                                         </div>
 
-                                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                                            {category.skills.map((skill, sIdx) => (
-                                                <div
-                                                    key={sIdx}
-                                                    style={{
-                                                        display: 'flex',
-                                                        justifyContent: 'space-between',
-                                                        alignItems: 'center',
-                                                        padding: '0.42rem 0.65rem',
-                                                        borderRadius: '8px',
-                                                        background: 'rgba(255, 255, 255, 0.03)',
-                                                        border: '1px solid var(--card-border)'
-                                                    }}
-                                                >
-                                                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                                                        <div style={{
-                                                            width: '6px',
-                                                            height: '6px',
-                                                            borderRadius: '50%',
-                                                            background: 'var(--accent-primary)',
-                                                            opacity: 0.85
-                                                        }} />
-                                                        <span style={{
-                                                            fontWeight: '600',
-                                                            fontSize: '0.84rem',
-                                                            color: 'var(--text-primary)'
-                                                        }}>
-                                                            {skill.name}
-                                                        </span>
-                                                    </div>
-                                                    <span style={{
-                                                        color: 'var(--accent-primary)',
-                                                        fontSize: '0.75rem',
-                                                        fontWeight: '700',
-                                                        fontFamily: 'JetBrains Mono, monospace',
-                                                        background: 'rgba(255, 85, 0, 0.08)',
-                                                        padding: '0.12rem 0.45rem',
-                                                        borderRadius: '4px',
-                                                        border: '1px solid rgba(255, 85, 0, 0.16)'
-                                                    }}>
-                                                        {skill.level}%
-                                                    </span>
-                                                </div>
-                                            ))}
-                                        </div>
+                                        <ul className="skill-bullet-list">
+                                            {category.skills.map((skill, sIdx) => {
+                                                const skillName = typeof skill === 'string' ? skill : (skill?.name || '');
+                                                return (
+                                                    <motion.li
+                                                        key={sIdx}
+                                                        className="skill-bullet-item"
+                                                        whileHover={{ x: 3 }}
+                                                        transition={{ duration: 0.18, ease: "easeOut" }}
+                                                    >
+                                                        <span className="skill-bullet-point" />
+                                                        <span className="skill-bullet-text">{skillName}</span>
+                                                    </motion.li>
+                                                );
+                                            })}
+                                        </ul>
                                     </div>
                                 </SpotlightCard>
                             </motion.div>
