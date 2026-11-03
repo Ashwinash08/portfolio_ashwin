@@ -1,7 +1,9 @@
 {
-  "name": "portfolio-project",
+  "name": "ashwin-portfolio",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Ashwin E personal developer portfolio - MCA Final-Year Student & Full Stack Software Engineer",
+  "author": "Ashwin E <ashwin.e174@gmail.com>",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,13 +12,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@gsap/react": "^2.1.2",
-    "gsap": "^3.14.2",
     "motion": "^12.26.2",
-    "ogl": "^1.0.11",
     "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "three": "^0.182.0"
+    "react-dom": "^19.2.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",

@@ -1,0 +1,124 @@
+/* ==========================================================================
+   DESIGN TOKENS - SINGLE SOURCE OF TRUTH
+   Ashwin E Portfolio Design System (Digital Emerald / Cyber Green Code Dark Theme)
+   ========================================================================== */
+
+:root {
+  /* ---------- 1. COLOR TOKENS (Digital Emerald Dark Theme) ---------- */
+  color-scheme: dark;
+
+  /* Surfaces: Frosted translucent glass (blur-effect with optical clarity rather than solid green) */
+  --bg: #060a08;
+  --surface-1: rgba(14, 18, 22, 0.44);
+  --surface-2: rgba(22, 28, 34, 0.54);
+  --surface-3: rgba(30, 38, 46, 0.65);
+
+  /* Lines & Borders: Crisp subtle frosted glass borders */
+  --border-subtle: rgba(255, 255, 255, 0.10);
+  --border-strong: rgba(255, 255, 255, 0.22);
+
+  /* Typography Colors (High contrast WCAG AAA on dark surfaces) */
+  --text-primary: #ecfdf5;   /* Mint white - 17.2:1 contrast on #060a08 */
+  --text-secondary: #a7f3d0; /* Soft readable mint - 10.5:1 contrast */
+  --text-muted: #6ee7b7;     /* Luminous digital emerald - 7.5:1 contrast */
+
+  /* Primary UI Accent: Digital Emerald / Matrix Code Green */
+  --accent: #10b981;
+  --accent-hover: #34d399;
+  --accent-strong: #059669;
+  --accent-soft: rgba(16, 185, 129, 0.14);
+  --on-accent: #022013;      /* Deep contrast dark on vibrant emerald (passes AAA) */
+  --accent-2: #00f2fe;       /* Cyber cyan highlight */
+
+  /* Status Colors */
+  --success: #22c55e;
+  --warning: #fbbf24;
+  --danger: #f87171;
+
+  /* Atmosphere / Hero subtle tint */
+  --hero-glow: transparent;
+  --orb-color-1: rgba(16, 185, 129, 0.08);
+  --orb-color-2: rgba(0, 242, 254, 0.05);
+
+  /* Header (Transparent Top Bar per Request) */
+  --header-bg: transparent;
+  --header-border: transparent;
+  --header-shadow: none;
+
+  /* ---------- 2. ELEVATION & SHADOWS ---------- */
+  --shadow-1: 0 1px 3px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-2: 0 4px 16px -2px rgba(0, 0, 0, 0.65), 0 2px 6px -1px rgba(0, 0, 0, 0.45);
+  --shadow-3: 0 16px 36px -4px rgba(0, 0, 0, 0.8), 0 6px 14px -2px rgba(0, 0, 0, 0.6);
+  --glow-accent: 0 0 16px rgba(16, 185, 129, 0.45), 0 0 32px rgba(16, 185, 129, 0.2);
+
+  /* ---------- 3. SPACING (4px Base Scale - Compact & Well Proportioned) ---------- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 32px;
+  --space-8: 40px;
+  --space-9: 48px;
+  --space-10: 64px;
+  --space-11: 80px;
+  --space-12: 96px;
+
+  /* ---------- 4. RADIUS ---------- */
+  --radius-sm: 8px;     /* inputs, chips, tags */
+  --radius-md: 14px;    /* cards, content panels */
+  --radius-lg: 20px;    /* modals, hero containers */
+  --radius-pill: 999px; /* buttons, status badges */
+
+  /* ---------- 5. MOTION ---------- */
+  --dur-fast: 150ms;
+  --dur-base: 250ms;
+  --dur-slow: 450ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* ---------- 6. LAYOUT (Compact Section Spacing) ---------- */
+  --container: 1200px;
+  --gutter: clamp(1rem, 4vw, 2.5rem);
+  --section-y: clamp(1.4rem, 2.5vw, 2.25rem); /* Tight, clean, proportional spacing */
+  --nav-height: 68px;
+
+  /* ---------- 7. TYPOGRAPHY ---------- */
+  --font-heading: 'Outfit', 'Sora', system-ui, sans-serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --fs-xs: 0.78rem;
+  --fs-sm: 0.875rem;
+  --fs-base: 1rem;
+  --fs-lg: 1.125rem;
+  --fs-xl: 1.35rem;
+  --fs-2xl: clamp(1.5rem, 1.1rem + 1.4vw, 2rem);
+  --fs-3xl: clamp(1.85rem, 1.3rem + 2.2vw, 2.75rem);
+  --fs-hero: clamp(2.5rem, 1.4rem + 5vw, 4.5rem);
+
+  /* ---------- 8. COMPATIBILITY ALIASES ---------- */
+  --bg-primary: var(--bg);
+  --bg-secondary: var(--surface-1);
+  --bg-tertiary: var(--surface-2);
+  --surface: var(--surface-1);
+  --card-bg: var(--surface-1);
+  --card-border: var(--border-subtle);
+  --border: var(--border-subtle);
+  --border-hover: var(--border-strong);
+  --accent-primary: var(--accent);
+  --accent-secondary: var(--accent-hover);
+  --accent-tertiary: var(--accent-strong);
+  --accent-glow: var(--glow-accent);
+  --accent-glow-subtle: var(--accent-soft);
+  --accent-gradient: linear-gradient(135deg, #059669 0%, #10b981 50%, #34d399 100%);
+  --accent-text: var(--accent-hover);
+  --text: var(--text-primary);
+  --card-shadow: var(--shadow-2);
+  --shadow: var(--shadow-2);
+  --glow: var(--glow-accent);
+  --card-hover-glow: rgba(255, 255, 255, 0.08);
+  --card-hover-border: var(--border-strong);
+  --ease: var(--ease-out);
+}

@@ -1,89 +1,96 @@
-/* Google Fonts: Outfit, Plus Jakarta Sans & JetBrains Mono */
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
-
+/* Fonts loaded via preconnected <link> in index.html with font-display: swap */
 :root {
-  /* Dark Luxe Noir & Fiery Sunset Theme (Reference Image Theme) */
-  --bg-primary: #0a0a0c;
-  --bg-secondary: #111115;
-  --bg-tertiary: #17171d;
-  --card-bg: rgba(18, 18, 23, 0.82);
-  --card-border: rgba(255, 255, 255, 0.08);
+  /* Legacy bridge pointing directly to single source of truth in tokens.css */
+  --bg-primary: var(--bg);
+  --bg-secondary: var(--surface-1);
+  --bg-tertiary: var(--surface-2);
+  --card-bg: var(--surface-1);
+  --card-border: var(--border-subtle);
 
-  /* Fiery Sunset Orange Accents */
-  --accent-primary: #ff5500;
-  --accent-secondary: #ff7a18;
-  --accent-tertiary: #ff3800;
-  --accent-glow: rgba(255, 85, 0, 0.32);
-  --accent-glow-subtle: rgba(255, 85, 0, 0.12);
-  --accent-gradient: linear-gradient(135deg, #ff5500 0%, #ff8020 100%);
+  --accent-primary: var(--accent);
+  --accent-secondary: var(--accent-hover);
+  --accent-tertiary: var(--accent);
+  --accent-glow: var(--glow-accent);
+  --accent-glow-subtle: var(--accent-soft);
+  --accent-gradient: linear-gradient(135deg, #059669 0%, #10b981 50%, #34d399 100%);
 
-  /* Hero Gradient & Atmospheric Glow */
-  --hero-glow: radial-gradient(circle at 50% 28%, #ff4b14 0%, #ba2802 32%, #420d01 64%, #0d0d10 96%);
+  --hero-glow: radial-gradient(circle at 50% 28%, rgba(16, 185, 129, 0.18) 0%, rgba(5, 150, 105, 0.06) 32%, transparent 70%);
 
-  /* Typography */
-  --text-primary: #ffffff;
-  --text-secondary: #a3a3a8;
-  --text-muted: #71717a;
+  --glass-bg: var(--surface-1);
+  --glass-border: var(--border-subtle);
+  --glass-blur: 16px;
+  --card-shadow: var(--shadow-2);
 
-  /* Glassmorphism */
-  --glass-bg: rgba(18, 18, 23, 0.78);
-  --glass-border: rgba(255, 255, 255, 0.09);
-  --glass-blur: 20px;
-  --card-shadow: 0 12px 36px 0 rgba(0, 0, 0, 0.65);
+  --card-ambient-glow: transparent;
+  --card-hover-glow: var(--glow-accent);
+  --card-hover-border: var(--border-strong);
 
-  /* Top Bar / Header Variables */
-  --header-bg: rgba(10, 10, 12, 0.75);
-  --header-border: rgba(255, 255, 255, 0.07);
-  --header-shadow: 0 4px 24px -2px rgba(0, 0, 0, 0.7);
+  --orb-color-1: rgba(16, 185, 129, 0.14);
+  --orb-color-2: rgba(5, 150, 105, 0.10);
+  --orb-color-3: rgba(52, 211, 153, 0.08);
+  --orb-color-4: rgba(0, 242, 254, 0.06);
+  --orb-opacity: 1;
+  --grid-dot-color: rgba(52, 211, 153, 0.04);
 
-  /* Hover Glows */
-  --card-ambient-glow: rgba(255, 85, 0, 0.04);
-  --card-hover-glow: rgba(255, 85, 0, 0.25);
-  --card-hover-border: rgba(255, 85, 0, 0.5);
-
-  /* Spacing */
-  --nav-height: 72px;
-
-  /* Animation Easings */
-  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: var(--ease-out);
+  --ease-smooth: var(--ease-in-out);
 }
 
-/* Light Mode support (retaining adaptability) */
-[data-theme="light"] {
-  --bg-primary: #f8fafc;
-  --bg-secondary: #ffffff;
-  --bg-tertiary: #f1f5f9;
-  --card-bg: rgba(255, 255, 255, 0.85);
-  --card-border: rgba(15, 23, 42, 0.08);
+/* ===================== KEYFRAMES ===================== */
 
-  --accent-primary: #ff5500;
-  --accent-secondary: #ff7a18;
-  --accent-tertiary: #e04400;
-  --accent-glow: rgba(255, 85, 0, 0.22);
-  --accent-glow-subtle: rgba(255, 85, 0, 0.08);
-
-  --text-primary: #0f172a;
-  --text-secondary: #475569;
-  --text-muted: #64748b;
-
-  --glass-bg: rgba(255, 255, 255, 0.85);
-  --glass-border: rgba(15, 23, 42, 0.09);
-  --card-shadow: 0 8px 32px 0 rgba(15, 23, 42, 0.06);
-
-  --header-bg: rgba(255, 255, 255, 0.85);
-  --header-border: rgba(15, 23, 42, 0.08);
-  --header-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
-
-  --card-ambient-glow: rgba(255, 85, 0, 0.03);
-  --card-hover-glow: rgba(255, 85, 0, 0.15);
-  --card-hover-border: rgba(255, 85, 0, 0.45);
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(16, 185, 129, 0.35); }
+  50% { box-shadow: 0 0 40px rgba(16, 185, 129, 0.65), 0 0 80px rgba(16, 185, 129, 0.25); }
+}
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+  70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+@keyframes divider-glow {
+  0%, 100% {
+    opacity: 0.6;
+    box-shadow: 0 0 6px rgba(16, 185, 129, 0.35);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 18px rgba(16, 185, 129, 0.7), 0 0 35px rgba(16, 185, 129, 0.3);
+  }
+}
+
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateY(0); opacity: 0.7; }
+  50% { transform: translateY(8px); opacity: 1; }
+}
+
+/* ===================== BASE ===================== */
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: calc(var(--nav-height) + 16px);
-  overflow-x: hidden;
+  scroll-padding-top: 1.25rem;
   width: 100%;
 }
 
@@ -98,7 +105,7 @@ body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.6;
-  overflow-x: hidden;
+  overflow-x: clip;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   position: relative;
@@ -126,12 +133,13 @@ input, textarea {
   font-family: inherit;
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  transition: border-color 0.25s ease, box-shadow 0.3s ease, background-color 0.2s ease;
 }
 
 input:focus, textarea:focus {
   border-color: var(--accent-primary) !important;
-  box-shadow: 0 0 0 3px var(--accent-glow) !important;
+  box-shadow: 0 0 0 4px var(--accent-glow-subtle), 0 0 20px var(--accent-glow-subtle) !important;
+  outline: none;
 }
 
 input::placeholder, textarea::placeholder {
@@ -167,21 +175,22 @@ input::placeholder, textarea::placeholder {
   width: 100%;
 }
 
-/* Signature Reference Image Button: "Get in touch ->" */
+/* ===================== BUTTONS ===================== */
+
 .btn-touch {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  background-color: #ffffff;
-  color: #0c0c0e !important;
+  background-color: var(--surface-1);
+  color: var(--text-primary) !important;
   font-weight: 700;
   font-size: 0.88rem;
   letter-spacing: -0.2px;
   padding: 0.38rem 0.42rem 0.38rem 1.15rem;
-  border-radius: 9999px;
-  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-strong);
   cursor: pointer;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+  box-shadow: var(--shadow-1);
   transition: all 0.25s var(--ease-spring);
   text-decoration: none;
   user-select: none;
@@ -189,7 +198,7 @@ input::placeholder, textarea::placeholder {
 
 .btn-touch:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(255, 85, 0, 0.3);
+  box-shadow: 0 8px 24px var(--accent-glow-subtle);
   background-color: #f8fafc;
 }
 
@@ -212,10 +221,9 @@ input::placeholder, textarea::placeholder {
 
 .btn-touch:hover .btn-touch-icon {
   transform: translateX(3px);
-  background: #ff3d00;
+  background: var(--accent-secondary);
 }
 
-/* Standard Buttons */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -233,7 +241,8 @@ input::placeholder, textarea::placeholder {
 
 .btn-primary {
   background: var(--accent-gradient);
-  color: #ffffff !important;
+  color: var(--on-accent) !important;
+  font-weight: 700;
   box-shadow: 0 4px 16px var(--accent-glow);
 }
 
@@ -252,9 +261,10 @@ input::placeholder, textarea::placeholder {
 
 .btn-outline:hover {
   border-color: var(--accent-primary);
-  background: rgba(255, 85, 0, 0.08);
+  background: var(--accent-glow-subtle);
   transform: translateY(-2px);
   color: var(--accent-primary);
+  box-shadow: 0 0 16px var(--accent-glow-subtle);
 }
 
 .btn-sm {
@@ -263,9 +273,10 @@ input::placeholder, textarea::placeholder {
   border-radius: 30px;
 }
 
-/* Sections */
+/* ===================== SECTIONS ===================== */
+
 .section {
-  padding: clamp(3.5rem, 6vw, 5.5rem) 0;
+  padding: var(--section-y) 0;
   position: relative;
   width: 100%;
 }
@@ -298,22 +309,90 @@ input::placeholder, textarea::placeholder {
   background: var(--accent-glow-subtle);
   padding: 0.22rem 0.75rem;
   border-radius: 50px;
-  border: 1px solid rgba(255, 85, 0, 0.2);
+  border: 1px solid var(--border-subtle);
 }
 
-/* Header & Navigation */
+/* ===================== SECTION TITLE WITH HORIZONTAL LINE (Image 1 Style) ===================== */
+
+.section-header-line {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+  margin-bottom: clamp(1.4rem, 2.5vw, 2.25rem);
+}
+
+.section-title-line {
+  font-family: var(--font-heading);
+  font-size: clamp(1.85rem, 3.6vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  margin: 0;
+  white-space: nowrap;
+}
+
+.section-title-rule {
+  flex: 1;
+  height: 1px;
+  background: var(--border-subtle);
+  border: none;
+}
+
+/* Skills Badge Box - Large Blurry Frosted Glass with Interactive Cursor Spotlight & Glow */
+.skill-badge-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.65rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-subtle);
+  background: var(--surface-1);
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  color: var(--text-primary);
+  font-size: clamp(0.92rem, 1.25vw, 1.05rem);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  user-select: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-1);
+  transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, color 0.25s ease;
+}
+
+.skill-badge-box:hover {
+  background: var(--surface-2);
+  border-color: var(--accent) !important;
+  color: #ffffff !important;
+  box-shadow: 0 12px 28px -4px rgba(0, 0, 0, 0.6), 0 0 24px rgba(16, 185, 129, 0.42) !important;
+}
+
+@media (max-width: 600px) {
+  .skill-badge-box {
+    padding: 0.72rem 1.25rem;
+    font-size: 0.88rem;
+    border-radius: 10px;
+  }
+}
+
+/* ===================== HEADER ===================== */
+
 .site-header {
-  position: sticky;
-  top: 0;
+  position: relative !important;
+  top: auto !important;
   left: 0;
   right: 0;
-  z-index: 1000;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  padding: 0.75rem 0;
-  background-color: var(--header-bg);
-  border-bottom: 1px solid var(--header-border);
-  box-shadow: var(--header-shadow);
+  z-index: 100;
+  padding: 0.85rem 0;
+  background: transparent !important;
+  background-color: transparent !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
   transition: all 0.3s var(--ease-spring);
 }
 
@@ -335,72 +414,105 @@ input::placeholder, textarea::placeholder {
   color: var(--text-secondary);
   background: transparent;
   padding: 0.38rem 0.9rem;
-  border-radius: 30px;
+  border-radius: var(--radius-pill);
   border: none;
   cursor: pointer;
   transition: all 0.22s var(--ease-spring);
+  position: relative;
 }
 
 .nav-link:hover {
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+  background: var(--accent-soft);
 }
 
 .nav-link.active {
-  color: #ffffff;
+  color: var(--on-accent);
   background: var(--accent-primary);
-  box-shadow: 0 2px 12px var(--accent-glow);
+  box-shadow: var(--glow-accent);
 }
 
-/* Hero Frame Container (From Reference Picture) */
+/* ===================== HERO FRAME (frameless) ===================== */
+
 .hero-frame {
-  position: relative;
   border-radius: clamp(24px, 3.5vw, 36px);
-  background: var(--hero-glow);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 32px 70px -10px rgba(0, 0, 0, 0.85);
   overflow: hidden;
   padding: clamp(1.5rem, 3.5vw, 2.75rem);
   margin-top: 1rem;
   margin-bottom: 2rem;
+  position: relative;
 }
 
-/* Ensure Hero Frame badges are always bright, crisp, and high-contrast */
 .hero-frame .badge-pill,
 .hero-pill {
-  color: #ffffff !important;
-  border-color: rgba(255, 255, 255, 0.22) !important;
-  background: rgba(0, 0, 0, 0.5) !important;
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border-subtle) !important;
+  background: var(--surface-1) !important;
+  box-shadow: var(--shadow-1) !important;
 }
 
 .hero-frame .badge-pill:hover,
 .hero-pill:hover {
-  background: rgba(255, 85, 0, 0.22) !important;
-  border-color: var(--accent-primary) !important;
-  color: #ffffff !important;
+  border-color: var(--border-strong) !important;
+  background: var(--surface-2) !important;
 }
 
-/* Glass Card */
+/* ===================== GLASS CARD (Blurry Frosted Glass Effect) ===================== */
+
 .glass-card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 20px;
-  backdrop-filter: blur(var(--glass-blur));
-  -webkit-backdrop-filter: blur(var(--glass-blur));
-  box-shadow: var(--card-shadow);
-  transition: transform 0.28s var(--ease-spring), border-color 0.28s ease, box-shadow 0.28s ease;
+  background: var(--surface-1);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-1);
+  transition: transform 0.25s var(--ease-spring), border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
   position: relative;
 }
 
 .glass-card:hover {
-  transform: translateY(-3px);
-  border-color: var(--card-hover-border);
-  box-shadow: 0 16px 36px -6px var(--card-hover-glow);
+  background: var(--surface-2);
+  transform: translateY(-2px);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-2);
 }
 
-/* Brand Strip */
+/* Hero Portrait Frame (Original photo without background cut) */
+.hero-portrait-frame {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 4 / 4.75;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.7);
+  background: var(--surface-1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.hero-portrait-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 15%;
+  display: block;
+  transition: transform 0.4s var(--ease-out);
+}
+
+.hero-portrait-frame:hover .hero-portrait-img {
+  transform: scale(1.03);
+}
+
+/* Tilt card utility */
+.tilt-card {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+/* ===================== BRAND STRIP ===================== */
+
 .brand-strip {
   border-top: 1px solid var(--card-border);
   border-bottom: 1px solid var(--card-border);
@@ -457,7 +569,8 @@ input::placeholder, textarea::placeholder {
   opacity: 0.85;
 }
 
-/* Grids */
+/* ===================== GRIDS ===================== */
+
 .grid-cols-2 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -470,7 +583,6 @@ input::placeholder, textarea::placeholder {
   }
 }
 
-/* Projects 2x2 Grid */
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -498,7 +610,8 @@ input::placeholder, textarea::placeholder {
   }
 }
 
-/* Score / Level Progress Bar */
+/* ===================== SCORE / PROGRESS ===================== */
+
 .score-track {
   height: 6px;
   background: rgba(255, 255, 255, 0.08);
@@ -511,8 +624,12 @@ input::placeholder, textarea::placeholder {
 .score-fill {
   height: 100%;
   border-radius: 10px;
-  background: var(--accent-gradient);
+  background: linear-gradient(90deg, var(--accent-primary) 0%, var(--accent-secondary) 50%, var(--accent-primary) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite linear;
 }
+
+/* ===================== SKILLS ===================== */
 
 .skills-grid {
   display: grid;
@@ -527,7 +644,6 @@ input::placeholder, textarea::placeholder {
   }
 }
 
-/* Skill Bullet List Items */
 .skill-bullet-list {
   list-style: none;
   padding: 0;
@@ -546,12 +662,29 @@ input::placeholder, textarea::placeholder {
   background: rgba(255, 255, 255, 0.025);
   border: 1px solid var(--card-border);
   transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-bullet-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(59, 130, 246, 0.08) 50%, transparent 100%);
+  background-size: 200% 100%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.skill-bullet-item:hover::after {
+  opacity: 1;
+  animation: shimmer 1.5s infinite linear;
 }
 
 .skill-bullet-item:hover {
-  background: rgba(255, 85, 0, 0.06);
-  border-color: rgba(255, 85, 0, 0.3);
-  box-shadow: 0 2px 10px rgba(255, 85, 0, 0.1);
+  background: var(--accent-glow-subtle);
+  border-color: rgba(59, 130, 246, 0.35);
+  box-shadow: 0 2px 12px var(--accent-glow-subtle);
 }
 
 .skill-bullet-point {
@@ -576,20 +709,22 @@ input::placeholder, textarea::placeholder {
   letter-spacing: -0.1px;
 }
 
-/* Certificate Link Button */
+/* ===================== CERTIFICATE LINK ===================== */
+
 .cert-btn-link:hover {
-  background: rgba(255, 85, 0, 0.12) !important;
-  border-color: rgba(255, 85, 0, 0.4) !important;
+  background: var(--accent-glow-subtle) !important;
+  border-color: var(--accent-primary) !important;
   color: #ffffff !important;
-  box-shadow: 0 4px 12px rgba(255, 85, 0, 0.2) !important;
+  box-shadow: 0 4px 12px var(--accent-glow-subtle) !important;
 }
 
-/* Section Orange Divider with Left & Right Margins */
+/* ===================== SECTION DIVIDER ===================== */
+
 .section-divider-container {
   width: 100%;
-  max-width: 1320px;
-  margin: 0 auto;
-  padding: 0 clamp(2rem, 8vw, 6rem);
+  max-width: 1200px;
+  margin: 0.25rem auto;
+  padding: 0 var(--gutter);
   box-sizing: border-box;
 }
 
@@ -598,16 +733,17 @@ input::placeholder, textarea::placeholder {
   width: 100%;
   background: linear-gradient(
     90deg,
-    rgba(255, 85, 0, 0) 0%,
-    rgba(255, 85, 0, 0.4) 15%,
-    #ff5500 50%,
-    rgba(255, 85, 0, 0.4) 85%,
-    rgba(255, 85, 0, 0) 100%
+    transparent 0%,
+    rgba(16, 185, 129, 0.35) 15%,
+    var(--accent-primary) 50%,
+    rgba(16, 185, 129, 0.35) 85%,
+    transparent 100%
   );
   border-radius: 9999px;
-  box-shadow: 0 0 6px rgba(255, 85, 0, 0.35);
-  opacity: 0.75;
+  animation: divider-glow 3s ease-in-out infinite;
 }
+
+/* ===================== EDUCATION ===================== */
 
 .education-grid {
   display: grid;
@@ -622,7 +758,8 @@ input::placeholder, textarea::placeholder {
   }
 }
 
-/* Pill Badges */
+/* ===================== BADGE PILLS ===================== */
+
 .badge-pill {
   font-size: 0.78rem;
   font-weight: 600;
@@ -645,7 +782,8 @@ input::placeholder, textarea::placeholder {
   color: var(--accent-secondary);
 }
 
-/* Number Label (e.g. #01, #02, #03, #04) */
+/* ===================== NUM LABEL ===================== */
+
 .num-label {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.78rem;
@@ -655,31 +793,21 @@ input::placeholder, textarea::placeholder {
   margin-bottom: 0.25rem;
 }
 
-/* Live radar dot */
+/* ===================== RADAR DOT ===================== */
+
 .radar-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
   background-color: var(--accent-primary);
   display: inline-block;
-  box-shadow: 0 0 0 0 rgba(255, 85, 0, 0.7);
+  box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
   animation: pulse-ring 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
 }
 
-@keyframes pulse-ring {
-  0% {
-    box-shadow: 0 0 0 0 rgba(255, 85, 0, 0.7);
-  }
-  70% {
-    box-shadow: 0 0 0 8px rgba(255, 85, 0, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(255, 85, 0, 0);
-  }
-}
+/* ===================== RESPONSIVE NAV ===================== */
 
-/* Mobile responsive menu */
-@media (max-width: 900px) {
+@media (max-width: 1040px) {
   .desktop-nav {
     display: none !important;
   }
@@ -688,7 +816,8 @@ input::placeholder, textarea::placeholder {
   }
 }
 
-/* Floating Actions Hub */
+/* ===================== FLOATING ACTIONS ===================== */
+
 .floating-actions-container {
   position: fixed;
   bottom: 1.5rem;
@@ -713,7 +842,7 @@ input::placeholder, textarea::placeholder {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--shadow-2);
   transition: all 0.25s var(--ease-spring);
 }
 
@@ -722,4 +851,28 @@ input::placeholder, textarea::placeholder {
   border-color: var(--accent-primary);
   color: var(--accent-primary);
   box-shadow: 0 8px 24px var(--accent-glow);
+}
+
+/* ===================== SCROLL INDICATOR ===================== */
+
+.scroll-indicator {
+  animation: scroll-bounce 1.8s ease-in-out infinite;
+}
+
+/* ===================== CARD ACCENT TOP LINE ===================== */
+
+.card-accent-top {
+  position: relative;
+}
+
+.card-accent-top::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(to right, var(--accent-primary), transparent);
+  border-radius: 20px 20px 0 0;
+  z-index: 1;
 }

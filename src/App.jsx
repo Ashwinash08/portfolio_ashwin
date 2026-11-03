@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
-import About from './components/About';
-import Projects from './components/Projects';
-import Skills from './components/Skills';
-import Education from './components/Education';
-import Experience from './components/Experience';
-import Contact from './components/Contact';
+import Footer from './components/Footer';
 import CustomCursor from './components/CustomCursor';
 import BackgroundAura from './components/BackgroundAura';
 import { motion, AnimatePresence } from 'framer-motion';
+
+// Code-split below-the-fold sections for instant initial paint & optimal Core Web Vitals
+const About = lazy(() => import('./components/About'));
+const Education = lazy(() => import('./components/Education'));
+const Skills = lazy(() => import('./components/Skills'));
+const Projects = lazy(() => import('./components/Projects'));
+const Experience = lazy(() => import('./components/Experience'));
+const Contact = lazy(() => import('./components/Contact'));
 
 const SECTIONS = [
   { id: 'home', label: 'Home' },
@@ -21,29 +24,38 @@ const SECTIONS = [
   { id: 'contact', label: 'Contact' }
 ];
 
-const SectionDivider = () => (
-  <div className="section-divider-container" aria-hidden="true">
-    <div className="section-divider-line" />
+const SectionFallback = () => (
+  <div
+    style={{
+      minHeight: '280px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      color: 'var(--text-muted)',
+      fontSize: 'var(--fs-sm)',
+      fontFamily: 'var(--font-mono)'
+    }}
+    aria-hidden="true"
+  >
+    <div className="radar-dot" style={{ width: '8px', height: '8px', marginRight: '8px' }} />
+    Loading section...
   </div>
 );
 
 function App() {
-  const [theme, setTheme] = useState(() => {
-    const saved = localStorage.getItem('portfolio-theme');
-    return saved || 'dark'; // Dark theme matching the reference design by default
-  });
-
   const [activeSection, setActiveSection] = useState('home');
   const [showBackToTop, setShowBackToTop] = useState(false);
 
+  // Enforce Digital Emerald / Green Code Dark Theme permanently
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('portfolio-theme', theme);
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
-  };
+    document.documentElement.setAttribute('data-theme', 'dark');
+    document.documentElement.style.colorScheme = 'dark';
+    try {
+      localStorage.setItem('portfolio-theme', 'dark');
+    } catch {
+      // Ignore storage errors in private browsing
+    }
+  }, []);
 
   // Scroll spy to highlight active nav link based on scroll position
   useEffect(() => {
@@ -78,48 +90,51 @@ function App() {
 
   return (
     <>
+      {/* Skip to Main Content Link for Keyboard and Screen Reader Accessibility */}
+      <a href="#main-content" className="skip-to-content">
+        Skip to main content
+      </a>
+
       <CustomCursor />
       <BackgroundAura />
 
-      {/* Modern Sticky Navigation */}
+      {/* Clean Top Navigation (Stays at top of page, does not follow to other sections) */}
       <Header
         currentPage={activeSection}
         onNavigate={navigateTo}
         pages={SECTIONS}
-        theme={theme}
-        onToggleTheme={toggleTheme}
       />
 
-      <main style={{ position: 'relative', zIndex: 1 }}>
-        {/* Hero Section Frame matching Reference Image */}
+      <main id="main-content" tabIndex="-1" style={{ position: 'relative', zIndex: 1, outline: 'none' }}>
+        {/* Hero Section */}
         <Hero onNavigate={navigateTo} />
-        <SectionDivider />
 
-        {/* About Section */}
-        <About onNavigate={navigateTo} />
-        <SectionDivider />
+        <Suspense fallback={<SectionFallback />}>
+          {/* About Section */}
+          <About />
+          <br />
 
-        {/* Academic Journey (Education first) */}
-        <Education onNavigate={navigateTo} />
-        <SectionDivider />
+          {/* Academic Journey & Skills */}
+          <Education />
+          <br />
+          <Skills />
+          <br />
 
-        {/* Skills & Technical Stack (then Skills) */}
-        <Skills onNavigate={navigateTo} />
-        <SectionDivider />
+          {/* Featured Projects */}
+          <Projects />
+          <br />
 
-        {/* Featured Projects (and Projects) */}
-        <Projects onNavigate={navigateTo} />
-        <SectionDivider />
+          {/* Career & Experience */}
+          <Experience />
+          <br />
 
-        {/* Career & Experience */}
-        <Experience onNavigate={navigateTo} />
-        <SectionDivider />
-
-        {/* Get in Touch */}
-        <Contact onNavigate={navigateTo} />
+          {/* Get in Touch */}
+          <Contact />
+        </Suspense>
       </main>
 
-
+      {/* Semantic Footer */}
+      <Footer onNavigate={navigateTo} />
 
       {/* Floating Back to Top Button */}
       <AnimatePresence>
@@ -136,8 +151,8 @@ function App() {
               title="Back to Top"
               aria-label="Back to top"
             >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="18 15 12 9 6 15"></polyline>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <polyline points="18 15 12 9 6 15" />
               </svg>
             </button>
           </motion.div>

@@ -4,16 +4,39 @@ import { motion, useSpring } from 'framer-motion';
 const CustomCursor = () => {
     const [isVisible, setIsVisible] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
-    const [isTouch, setIsTouch] = useState(false);
+    const checkDisabled = () => {
+        if (typeof window === 'undefined') return true;
+        const isCoarse = window.matchMedia('(pointer: coarse)').matches;
+        const noHover = window.matchMedia('(hover: none)').matches;
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        return isCoarse || noHover || reducedMotion;
+    };
+
+    const [isDisabled, setIsDisabled] = useState(checkDisabled);
 
     const mouseX = useSpring(0, { stiffness: 600, damping: 30 });
     const mouseY = useSpring(0, { stiffness: 600, damping: 30 });
 
     useEffect(() => {
-        if (window.matchMedia('(pointer: coarse)').matches) {
-            setIsTouch(true);
-            return;
-        }
+        const updateDisabledState = () => setIsDisabled(checkDisabled());
+
+        const coarseQuery = window.matchMedia('(pointer: coarse)');
+        const hoverQuery = window.matchMedia('(hover: none)');
+        const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+        coarseQuery.addEventListener('change', updateDisabledState);
+        hoverQuery.addEventListener('change', updateDisabledState);
+        motionQuery.addEventListener('change', updateDisabledState);
+
+        return () => {
+            coarseQuery.removeEventListener('change', updateDisabledState);
+            hoverQuery.removeEventListener('change', updateDisabledState);
+            motionQuery.removeEventListener('change', updateDisabledState);
+        };
+    }, []);
+
+    useEffect(() => {
+        if (isDisabled) return undefined;
 
         const handleMouseMove = (e) => {
             mouseX.set(e.clientX);
@@ -50,21 +73,22 @@ const CustomCursor = () => {
             window.removeEventListener('mouseover', handleMouseOver);
             document.body.removeEventListener('mouseleave', handleMouseLeave);
         };
-    }, [mouseX, mouseY, isVisible]);
+    }, [isDisabled, mouseX, mouseY, isVisible]);
 
-    if (isTouch) return null;
+    if (isDisabled) return null;
 
     return (
         <motion.div
+            aria-hidden="true"
             style={{
                 position: 'fixed',
                 top: 0,
                 left: 0,
                 width: isHovered ? 48 : 24,
                 height: isHovered ? 48 : 24,
-                borderRadius: '50%',
+                borderRadius: 'var(--radius-pill)',
                 backgroundColor: 'transparent',
-                border: '2px solid var(--accent-primary)',
+                border: '2px solid var(--accent)',
                 pointerEvents: 'none',
                 zIndex: 99999,
                 display: isVisible ? 'block' : 'none',
@@ -72,7 +96,7 @@ const CustomCursor = () => {
                 y: mouseY,
                 translateX: '-50%',
                 translateY: '-50%',
-                boxShadow: isHovered ? '0 0 16px var(--accent-glow)' : 'none'
+                boxShadow: isHovered ? 'var(--glow-accent)' : 'none'
             }}
             transition={{ type: 'spring', stiffness: 350, damping: 25 }}
         >
@@ -80,8 +104,8 @@ const CustomCursor = () => {
                 style={{
                     width: '100%',
                     height: '100%',
-                    borderRadius: '50%',
-                    backgroundColor: 'var(--accent-primary)',
+                    borderRadius: 'var(--radius-pill)',
+                    backgroundColor: 'var(--accent)',
                     opacity: isHovered ? 0.25 : 0.15,
                 }}
                 animate={{ scale: isHovered ? 1.2 : 0.6 }}

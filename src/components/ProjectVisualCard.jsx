@@ -2,30 +2,30 @@ import React from 'react';
 
 /**
  * ProjectVisualCard
- * Renders the project's name as a modern typographic visual banner / artwork.
- * Replaces generic stock photos with a sleek graphic identity card.
+ * Renders the project's graphic identity badge and banner using
+ * the cohesive Midnight Violet & Slate design system.
  */
 const ProjectVisualCard = ({ project, isModal = false }) => {
-    // Determine graphic theme & motifs based on project category / title
     const getVisualTheme = (title) => {
-        if (title.toLowerCase().includes('event')) {
+        const t = (title || '').toLowerCase();
+        if (t.includes('event')) {
             return {
-                gradient: 'linear-gradient(135deg, #4338ca 0%, #6366f1 50%, #8b5cf6 100%)',
-                accentColor: '#818cf8',
-                bgGradient: 'radial-gradient(ellipse at 80% 20%, rgba(99, 102, 241, 0.28) 0%, rgba(15, 23, 42, 0.04) 70%)',
-                badgeText: 'WEB APPLICATION',
-                stat: 'EVENT MANAGEMENT',
+                monogram: 'EMS',
+                gradient: 'linear-gradient(135deg, rgba(16, 185, 129, 0.35) 0%, rgba(5, 150, 105, 0.15) 100%)',
+                accentColor: 'var(--accent, #10b981)',
+                bgGradient: 'radial-gradient(ellipse at 80% 20%, rgba(16, 185, 129, 0.18) 0%, transparent 70%)',
+                badgeText: 'Web Application',
+                stat: 'Event Management',
                 icon: (
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                        <line x1="16" y1="2" x2="16" y2="6"></line>
-                        <line x1="8" y1="2" x2="8" y2="6"></line>
-                        <line x1="3" y1="10" x2="21" y2="10"></line>
-                        <path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"></path>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                        <line x1="16" y1="2" x2="16" y2="6" />
+                        <line x1="8" y1="2" x2="8" y2="6" />
+                        <line x1="3" y1="10" x2="21" y2="10" />
                     </svg>
                 ),
                 patternSvg: (
-                    <svg width="100%" height="100%" style={{ position: 'absolute', inset: 0, opacity: 0.15 }}>
+                    <svg width="100%" height="100%" style={{ position: 'absolute', inset: 0, opacity: 0.12 }} aria-hidden="true">
                         <pattern id="grid-event" width="24" height="24" patternUnits="userSpaceOnUse">
                             <rect width="23" height="23" fill="none" stroke="currentColor" strokeWidth="0.8" />
                         </pattern>
@@ -33,41 +33,43 @@ const ProjectVisualCard = ({ project, isModal = false }) => {
                     </svg>
                 )
             };
-        } else if (title.toLowerCase().includes('bitcoin')) {
+        } else if (t.includes('bitcoin') || t.includes('crypto')) {
             return {
-                gradient: 'linear-gradient(135deg, #d97706 0%, #f59e0b 50%, #7c3aed 100%)',
-                accentColor: '#fbbf24',
-                bgGradient: 'radial-gradient(ellipse at 80% 20%, rgba(245, 158, 11, 0.28) 0%, rgba(124, 58, 237, 0.12) 70%)',
+                monogram: 'BTC',
+                gradient: 'linear-gradient(135deg, rgba(6, 182, 212, 0.35) 0%, rgba(16, 185, 129, 0.15) 100%)',
+                accentColor: 'var(--accent-2, #00f2fe)',
+                bgGradient: 'radial-gradient(ellipse at 80% 20%, rgba(0, 242, 254, 0.18) 0%, transparent 70%)',
                 badgeText: 'Machine Learning',
-                stat: 'TIME SERIES',
+                stat: 'Time Series',
                 icon: (
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
-                        <polyline points="16 7 22 7 22 13"></polyline>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                        <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
+                        <polyline points="16 7 22 7 22 13" />
                     </svg>
                 ),
                 patternSvg: (
-                    <svg width="100%" height="100%" style={{ position: 'absolute', inset: 0, opacity: 0.2 }}>
+                    <svg width="100%" height="100%" style={{ position: 'absolute', inset: 0, opacity: 0.15 }} aria-hidden="true">
                         <path d="M0,80 Q70,20 140,65 T280,30 T420,70 T560,20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 4" />
                         <path d="M0,95 Q80,45 160,85 T320,40 T480,90 T640,35" fill="none" stroke="currentColor" strokeWidth="1.2" />
                     </svg>
                 )
             };
-        } else if (title.toLowerCase().includes('food') || title.toLowerCase().includes('organic')) {
+        } else if (t.includes('food') || t.includes('organic')) {
             return {
-                gradient: 'linear-gradient(135deg, #059669 0%, #10b981 50%, #06b6d4 100%)',
-                accentColor: '#34d399',
-                bgGradient: 'radial-gradient(ellipse at 80% 20%, rgba(16, 185, 129, 0.28) 0%, rgba(6, 182, 212, 0.12) 70%)',
+                monogram: 'FSC',
+                gradient: 'linear-gradient(135deg, rgba(34, 197, 94, 0.35) 0%, rgba(16, 185, 129, 0.12) 100%)',
+                accentColor: 'var(--success, #22c55e)',
+                bgGradient: 'radial-gradient(ellipse at 80% 20%, rgba(34, 197, 94, 0.18) 0%, transparent 70%)',
                 badgeText: 'Blockchain',
-                stat: 'FARM TO TABLE',
+                stat: 'Farm To Table',
                 icon: (
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                        <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
                     </svg>
                 ),
                 patternSvg: (
-                    <svg width="100%" height="100%" style={{ position: 'absolute', inset: 0, opacity: 0.18 }}>
+                    <svg width="100%" height="100%" style={{ position: 'absolute', inset: 0, opacity: 0.15 }} aria-hidden="true">
                         <circle cx="30" cy="40" r="16" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" />
                         <circle cx="120" cy="90" r="22" fill="none" stroke="currentColor" strokeWidth="1" />
                         <line x1="30" y1="40" x2="120" y2="90" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" />
@@ -78,18 +80,19 @@ const ProjectVisualCard = ({ project, isModal = false }) => {
             };
         } else {
             return {
-                gradient: 'linear-gradient(135deg, #db2777 0%, #ec4899 50%, #8b5cf6 100%)',
-                accentColor: '#f472b6',
-                bgGradient: 'radial-gradient(ellipse at 80% 20%, rgba(236, 72, 153, 0.28) 0%, rgba(139, 92, 246, 0.12) 70%)',
+                monogram: 'DTW',
+                gradient: 'linear-gradient(135deg, rgba(52, 211, 153, 0.35) 0%, rgba(16, 185, 129, 0.15) 100%)',
+                accentColor: 'var(--accent-hover, #34d399)',
+                bgGradient: 'radial-gradient(ellipse at 80% 20%, rgba(52, 211, 153, 0.18) 0%, transparent 70%)',
                 badgeText: 'Artificial Intelligence',
-                stat: 'REAL-TIME TWIN',
+                stat: 'Real-Time Twin',
                 icon: (
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                        <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
                     </svg>
                 ),
                 patternSvg: (
-                    <svg width="100%" height="100%" style={{ position: 'absolute', inset: 0, opacity: 0.2 }}>
+                    <svg width="100%" height="100%" style={{ position: 'absolute', inset: 0, opacity: 0.16 }} aria-hidden="true">
                         <path d="M0,60 L60,60 L80,20 L100,100 L120,40 L140,80 L160,60 L350,60" fill="none" stroke="currentColor" strokeWidth="1.5" />
                     </svg>
                 )
@@ -101,12 +104,13 @@ const ProjectVisualCard = ({ project, isModal = false }) => {
 
     return (
         <div
+            aria-hidden="true"
             style={{
                 width: '100%',
                 height: '100%',
                 minHeight: isModal ? '180px' : '100%',
-                background: 'var(--bg-secondary)',
-                borderRadius: isModal ? '12px' : '10px',
+                background: 'var(--surface-2)',
+                borderRadius: isModal ? 'var(--radius-md)' : 'var(--radius-sm)',
                 position: 'relative',
                 overflow: 'hidden',
                 display: 'flex',
@@ -114,13 +118,12 @@ const ProjectVisualCard = ({ project, isModal = false }) => {
                 justifyContent: isModal ? 'space-between' : 'center',
                 alignItems: isModal ? 'flex-start' : 'center',
                 textAlign: isModal ? 'left' : 'center',
-                padding: isModal ? '1.4rem' : '1rem 0.75rem',
-                border: '1px solid var(--card-border)',
-                boxShadow: 'inset 0 1px 1px rgba(255, 255, 255, 0.4), 0 4px 16px rgba(15, 23, 42, 0.04)',
+                padding: isModal ? 'var(--space-6)' : 'var(--space-4) var(--space-3)',
+                border: '1px solid var(--border-subtle)',
                 userSelect: 'none'
             }}
         >
-            {/* Background Aesthetic Mesh & Pattern */}
+            {/* Background Ambient Mesh & Pattern */}
             <div
                 style={{
                     position: 'absolute',
@@ -139,10 +142,10 @@ const ProjectVisualCard = ({ project, isModal = false }) => {
                     right: isModal ? '-30px' : '-20px',
                     width: isModal ? '140px' : '100px',
                     height: isModal ? '140px' : '100px',
-                    borderRadius: '50%',
+                    borderRadius: 'var(--radius-pill)',
                     background: theme.gradient,
-                    opacity: 0.22,
-                    filter: 'blur(22px)',
+                    opacity: 0.2,
+                    filter: 'blur(20px)',
                     pointerEvents: 'none'
                 }}
             />
@@ -166,23 +169,22 @@ const ProjectVisualCard = ({ project, isModal = false }) => {
                         <div style={{
                             display: 'inline-flex',
                             alignItems: 'center',
-                            gap: '0.4rem',
-                            padding: '0.2rem 0.55rem',
-                            background: 'var(--card-bg)',
-                            border: '1px solid var(--card-border)',
-                            borderRadius: '6px',
-                            backdropFilter: 'blur(10px)'
+                            gap: 'var(--space-2)',
+                            padding: 'var(--space-1) var(--space-3)',
+                            background: 'var(--surface-1)',
+                            border: '1px solid var(--border-subtle)',
+                            borderRadius: 'var(--radius-sm)'
                         }}>
                             <div style={{
                                 width: '7px',
                                 height: '7px',
-                                borderRadius: '50%',
+                                borderRadius: 'var(--radius-pill)',
                                 background: theme.accentColor,
                                 boxShadow: `0 0 6px ${theme.accentColor}`
                             }} />
                             <span style={{
-                                fontFamily: 'JetBrains Mono, monospace',
-                                fontSize: '0.72rem',
+                                fontFamily: 'var(--font-mono)',
+                                fontSize: 'var(--fs-xs)',
                                 fontWeight: '700',
                                 color: 'var(--text-primary)'
                             }}>
@@ -191,33 +193,34 @@ const ProjectVisualCard = ({ project, isModal = false }) => {
                         </div>
 
                         <span style={{
-                            fontSize: '0.72rem',
+                            fontSize: 'var(--fs-xs)',
                             fontWeight: '700',
-                            color: 'var(--accent-primary)',
-                            letterSpacing: '0.6px',
+                            color: 'var(--accent)',
+                            letterSpacing: '0.06em',
                             textTransform: 'uppercase'
                         }}>
                             {project.category}
                         </span>
                     </div>
 
-                    <div style={{ position: 'relative', zIndex: 2, margin: '0.9rem 0 0.4rem 0' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: theme.accentColor, marginBottom: '0.3rem' }}>
+                    <div style={{ position: 'relative', zIndex: 2, margin: 'var(--space-4) 0 var(--space-2) 0' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)', color: theme.accentColor, marginBottom: 'var(--space-1)' }}>
                             <span>{theme.icon}</span>
                             <span style={{
-                                fontFamily: 'JetBrains Mono, monospace',
-                                fontSize: '0.72rem',
+                                fontFamily: 'var(--font-mono)',
+                                fontSize: 'var(--fs-xs)',
                                 fontWeight: '700',
-                                color: 'var(--accent-primary)',
+                                color: 'var(--accent)',
                                 textTransform: 'uppercase',
-                                letterSpacing: '0.8px'
+                                letterSpacing: '0.08em'
                             }}>
                                 {theme.badgeText}
                             </span>
                         </div>
                         <h2 style={{
-                            fontSize: '1.5rem',
-                            fontWeight: '900',
+                            fontFamily: 'var(--font-heading)',
+                            fontSize: 'var(--fs-2xl)',
+                            fontWeight: '700',
                             color: 'var(--text-primary)',
                             margin: 0,
                             lineHeight: '1.2'
@@ -227,7 +230,7 @@ const ProjectVisualCard = ({ project, isModal = false }) => {
                     </div>
                 </>
             ) : (
-                /* Card Thumbnail: Clean, modern graphic brand identity badge */
+                /* Card Thumbnail */
                 <div style={{
                     position: 'relative',
                     zIndex: 2,
@@ -235,36 +238,35 @@ const ProjectVisualCard = ({ project, isModal = false }) => {
                     flexDirection: 'column',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    gap: '0.35rem',
+                    gap: 'var(--space-2)',
                     width: '100%'
                 }}>
                     <div style={{
                         width: '40px',
                         height: '40px',
-                        borderRadius: '10px',
-                        background: 'var(--card-bg)',
-                        border: '1px solid var(--card-border)',
+                        borderRadius: 'var(--radius-sm)',
+                        background: 'var(--surface-1)',
+                        border: '1px solid var(--border-subtle)',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
                         color: theme.accentColor,
-                        boxShadow: '0 2px 8px rgba(15, 23, 42, 0.05)',
-                        marginBottom: '0.15rem'
+                        boxShadow: 'var(--shadow-1)',
+                        marginBottom: 'var(--space-1)'
                     }}>
                         {theme.icon}
                     </div>
 
                     <span style={{
-                        fontFamily: 'JetBrains Mono, monospace',
-                        fontSize: '0.84rem',
-                        fontWeight: '800',
+                        fontFamily: 'var(--font-mono)',
+                        fontSize: 'var(--fs-sm)',
+                        fontWeight: '700',
                         color: 'var(--text-primary)',
-                        letterSpacing: '0.8px',
+                        letterSpacing: '0.05em',
                         textAlign: 'center'
                     }}>
                         {theme.monogram}
                     </span>
-
                 </div>
             )}
         </div>

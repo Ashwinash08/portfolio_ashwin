@@ -2,8 +2,6 @@
     position: relative;
     overflow: hidden;
     isolation: isolate;
-    backdrop-filter: blur(var(--glass-blur, 20px));
-    -webkit-backdrop-filter: blur(var(--glass-blur, 20px));
 }
 
 /* Inner radial glow following cursor */
@@ -12,10 +10,10 @@
     position: absolute;
     inset: 0;
     background: radial-gradient(480px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-            var(--spotlight-color, rgba(99, 102, 241, 0.22)),
+            var(--spotlight-color, var(--accent-soft)),
             transparent 65%);
     opacity: 0;
-    transition: opacity 0.4s ease;
+    transition: opacity var(--dur-base) var(--ease-out);
     pointer-events: none;
     z-index: 1;
 }
@@ -26,17 +24,17 @@
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    padding: 1.5px;
+    padding: 1px;
     background: radial-gradient(360px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-            var(--accent-primary, #6366f1),
-            var(--accent-secondary, #a855f7),
+            var(--accent),
+            var(--accent-hover),
             transparent 65%);
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     opacity: 0;
-    transition: opacity 0.4s ease;
+    transition: opacity var(--dur-base) var(--ease-out);
     pointer-events: none;
     z-index: 2;
 }
@@ -46,11 +44,5 @@
 }
 
 .card-spotlight:hover::after {
-    opacity: 0.9;
-}
-
-/* Ensure children are above the spotlight */
-.card-spotlight > * {
-    position: relative;
-    z-index: 3;
+    opacity: 0.8;
 }
